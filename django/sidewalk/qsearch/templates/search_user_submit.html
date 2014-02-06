@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+{% load postingstuff %}
+{% load static %}
+{% load thumbnail %}
+{% if first %}
+<tbody>
+<tr>
+    <th></th>
+    <th>Username</th>
+    <th>Full Name</th>
+    <th>Skill Points</th>
+    <th>Quest Record</th>
+    <th>City</th>
+</tr>
+{% endif %}
+{% for quser in qusers %}
+<tr>
+    <td><a href='#'><div class="quest-icon-wrapper">
+        {% thumbnail quser.icon "200x200" padding=True as im %}
+            <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" class="quest-icon"> 
+        {% endthumbnail %}
+    </div></a></td>
+    <td><a href="../profile/{{ quser.user.username }}"><span class="quest-name">{{ quser.user.username }}</span></a></td>
+    <td>{{ quser.user.first_name }} {{ quser.user.last_name }}</td>
+    <td><div id="skill-point-container">
+        {% for row in rows %}
+        <div class="row" id="stat-row-{{ row }}">
+            {% for col in cols %}
+            <div class="col-xs-{{ colwidth }} stat-box">
+                <img class="stat-icon" name="{{ row|multiply:numcols|add:col|getval:stat_list }}" src="
+                {% static 'images'%}/{{row|multiply:numcols|add:col|getval:stat_list|lower}}.png" alt="Sexy">
+                <p class="stat-value"> {{ row|multiply:numcols|add:col|getstatval:quser }} </p>
+            </div> 
+            {% endfor %}
+        </div>
+        {% endfor %}
+    </div></td>
+    <td>
+        <ul> 
+            <li>Completed Quests: {{ quser.completed_quests.count }}</li>
+            <li>Current Quests: {{ quser.current_quests.count }}</li>
+            <li>Posted Quests: {{ quser.posted_quests.count }} </li>
+        </ul>
+    </td>
+    <td>{{ quser.location }}</td>
+</tr>
+{% endfor %}
+{% if first %}
+</tbody>
+{% endif %}

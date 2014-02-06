@@ -1,0 +1,212 @@
+
+
+#buttons-box button {
+	float: right;
+	margin: 3px;
+	width: 190px;
+	text-align: center;
+	
+}
+
+#accordion button {
+	margin: 3px;
+}
+
+#buttons-box .alert {
+	width: 190px;
+	height: 250px;
+	margin-top: 180px;
+	margin-left: 65px;
+	text-align: left;
+}
+
+h2>a {
+	color: #5c5c5c;
+}
+
+
+
+#content-panel {
+    padding-bottom: 100px;
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-top: 20px;
+    /*border-left-width: 20px;
+    border-right-width: 20px;
+    border-top-width: 0px;
+    border-bottom-width: 50px;
+    border-color: #f5f5f5;
+    border-style: solid;*/
+}
+
+
+#instructions {
+	padding: 10px;
+	padding-top: 25px;
+	padding-left: 30px;
+	width: 710px;
+	margin: 20px;
+	margin-left: 0px;
+	border-width: 0px;
+	border-left-width: 3px;
+	border-style: solid;
+	border-color: #F0A4A4;
+	background-color: #FFE8E1;
+	font-style: italic;
+	font-size: .9em;
+
+}
+
+/*
+#instructions>p {
+	color: #606060;
+} */
+
+#buttons-box {
+	display: block;
+	clear: left;
+	text-align: right;
+	float: left;
+	height: 275px;
+	width: 256px;
+	margin-top: 120px;
+}
+
+#start-button {
+        width: 150px;
+}
+
+#post-button {
+        width: 150px;
+}
+
+#manage-button {
+        width: 150px;
+}
+
+#help-button {
+        width: 150px;
+}
+
+.panel-group {
+	float: right;
+}
+
+
+#daily-box {
+	display: inline-block;
+	width: 710px;
+	overflow: hidden;
+}
+
+#daily-name {
+	font-weight: bold;
+	width: 300px;
+}
+
+#daily-table, #daily-table>tr {
+	border-width: 0;
+}
+
+#daily-quest-icon {
+    width: 120px;
+    height: 120px;
+}
+
+#daily-quest-icon-wrapper {
+    display: inline-block;
+    width: 120px;
+    height: 120px;
+    border-radius: 3px;
+    overflow: hidden;
+    margin-top: 10px;
+}
+
+
+#daily-description {
+	display: inline-block;
+	max-width: 300px;
+	overflow: hidden;
+}
+
+#daily-rating {
+	display: inline-block;
+	float: right;
+}
+
+.panel {
+}
+
+.panel-body {
+	padding: 30px;
+	overflow: auto;
+}
+
+.see-more {
+	text-align: center;
+	background-color: #f5f5f5;
+	width: 100%;
+	float: right;
+	padding: 10px;
+	font-size: 14px;
+	font-weight: bold;
+}
+
+#quest-icon {
+    width: 120px;
+    height: 120px;
+    vertical-align: baseline;
+}
+
+
+.quest-title {
+    font-size: 1.2em;
+    width: 200px;
+}
+
+.quest-icon {
+    width: 50px;
+    height: 50px;
+}
+
+.quest-description {
+	overflow: hidden;
+	max-width: 200px;
+}
+
+.ally-name {
+	text-align: right;
+	margin-top: 5px;
+	font-color: #5c5c5c;
+	font-size: .8em;
+}
+
+
+.quest-icon-wrapper {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    border-radius: 3px;
+    overflow: hidden;
+    margin-top: 10px;
+}
+
+.star {
+	margin-top: 10px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.table-button {
+	display: inline-block;
+	width: 80px;
+	overflow: hidden;
+	float: right;
+	text-align: center;
+}
+
+.table-buttons-box {
+	width: 145px;
+	height: 80px;
+	margin: auto;
+}

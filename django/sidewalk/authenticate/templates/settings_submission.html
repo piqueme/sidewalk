@@ -1,0 +1,30 @@
+{% if not_valid_uname %}
+<div class="alert alert-danger" id="invalid-uname-alert"> 
+    <strong> Uh-oh! </strong> Your description needs to contain only letters (any case), spaces, punctuation, and numbers! 
+</div>
+{% endif %}
+
+{% if empty_name %}
+<div class="alert alert-danger" id="empty-name-alert">
+    <strong> Oh dear! </strong> You only filled out part of your name!
+</div>
+{% endif %}
+
+{% if all_empty %}
+<div class="alert alert-danger" id="invalid-all-alert"> 
+    <strong> Uh-oh! </strong> You didn't submit any information!
+</div>
+{% endif %}
+
+{% if not_valid_email %}
+<div class="alert alert-danger" id="invalid-email-alert"> 
+    <strong> Whoops! </strong> You didn't enter a valid email address! 
+</div>
+{% endif %}
+
+{% if success %}
+<div class="alert alert-success" id="success-alert">
+    <strong> Hooray! </strong> Your account changes have been submitted to our system! The changes will appear as soon as you refresh or switch pages.
+</div>
+{% endif %}
+

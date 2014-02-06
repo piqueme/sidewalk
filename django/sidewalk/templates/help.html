@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        {% load static %}
+        <title>Sidewalk - Help</title>
+        {% include "imports.html" %}
+        <link href="{% static 'css/help.css' %}" rel="stylesheet">
+    </head>
+    <body>
+        {% include "navbar.html" %}
+
+
+        <div id="panel">
+
+        <div class="panel-header">
+            <div class="page-header">
+                <h3> Useful Information </h3>
+            </div> 
+        </div>
+            <div id="content-panel">
+                <div class="panel panel-default" id="help-panel">
+                    <div class="panel-body">
+
+
+                        <h2>About</h2><br>
+                        <p> SideWalk is a website designed to help you learn about and explore your wonderful and activity-engorged city! Developed by MIT undergraduates Tian Mi, Anying Li, and Sumit Gogia for the annual 6.470 Web Programming Competition, SideWalk helps to solve the common problem of city-dwellers having difficulty finding activities in their city by providing them with the ability to post and search for activity information with grace, elegance, and power - all at the same time! </p>
+                        <br><br>
+                        <hr>
+
+                        <h2>Swanky Vocab</h2><br>
+                        <p><b>Quest:</b> A sequence of individual challenges that fall under a common theme. This is the main model in our site. Adventurers can find quests and post quests for their city, and in doing so find fun activities that simultaneously help them explore it. Quests also have a skill point distribution which indicate how many points an Adventurer will get for each skill upon completing the Quest.</p>
+
+                        <p><b>Skills:</b> These are attributes that we have determined to be important to activities in metropolitan environments. Each activity, or Quest for us, has particular qualities which can be expressed in points for each of the following categories, or Skills:
+                        <ul>
+                            <li>Wisdom: A descriptor of knowledge and understanding.</li>
+                            <li>Vitality: A measurement of physical strength and stamina.</li> 
+                            <li>Eating: An indicator for dining capabilities.</li>
+                            <li>Spiritual: A descriptor of in-touchedness with faith and philosophy.</li>
+                            <li>Fancy: An indicator of, well, fanciness.</li>
+                            <li>Thrifty: An indicator of how observant of the wallet one is. </li>
+                            <li>Nature: A measurement of environmental awareness.</li>
+                            <li>Worldly: A descriptor for how globally aware one is. </li>
+                            <li>Hipster: An indicator for how “hip” or “fresh” one is. </li>
+                        </ul>
+                            
+                        Users each have skill point values for each of these skills, which accumulate with their questing experience. Quests are also defined in part by their skill point distributions, as these help indicate the type of Quest.
+                        </p>
+
+                        <p><b>Challenge:</b> An individual tasks that partially comprises a Quest. Challenges are small and should be accomplishable in one short trip to a location specified with the challenge description. An example challenge might be “Play Tennis at Billy Jean King Tennis Center” in a Quest for playing racket sports at famous locations in New York, NY. </p>
+
+                        <p><b>Ally:</b> A buddy that you pick up on SideWalk while questing. You can list people as Allies on the site and get easier access to information like the quests they are currently taking, as well as photos of their questing experiences.</p>
+
+                        <p><b>Adventurer:</b> A way better term for user. Adventurers have Skills, and pick up Quests and Allies in the journey to learn about and explore their city. </p>
+
+                        <hr>
+                        <h2>Pages</h2>
+                        <br><br>
+
+                        <h4>Dash</h4>
+
+                        <p>Each user opens to their Dash when after logging in. The Dash is like your personal home page on SideWalk; from the Dash, you can easily see information about a popular daily quest, view summary information and actions for your current quests, and even see your allies’ quests. It’s tailored so that you can access information on quests important to you quickly, and make actions like completion and forfeiting of quests easy and breezy!</p>
+                        <div class="image-row">
+                            <img src="{% static 'images/help/help_dash_1.png' %}">
+                            <img src="{% static 'images/help/help_dash_2.png' %}">
+                        </div>
+
+                        <br><hr><br>
+
+
+                        <h4>Post</h4>
+
+                        <p>When you feel ecstatic about an activity you’ve found in your city and want to share it with others, mosy on over to the Post page! On this page, you’ll find a straightforward and simple form for filling out the information for the quest you want to post. You can fill out a name and description for your quest, and upload an icon you feel represents it. Afterwards, you must specify up to 10 challenges, or individual tasks, that comprise your quest. Each challenge needs both a description, and a location which you’ll be aided in selecting with Google’s address autocomplete. Lastly, you fill out the stat distribution for your quest - how many points users will get for each stat upon completing your quest - and you’re good to go! </p>     
+                        <div class="image-row">
+                            <img src="{% static 'images/help/help_post_1.png' %}">
+                        </div>   
+
+                        <br><hr><br>
+
+                        <h4>Search</h4>
+
+                        Finding activities in your city can often be tedious, but our search feature makes it simple and clean! You just enter keywords for the kinds of quests you’re interested in, choose from a set of filters to specify the kinds of results you’ll get, and submit your choices. The results pop down into the search table below, and you can easily go through them to find the quest which satisfies you best! In the search table, we provide a lot of summary information for the quests, including the poster’s username, the stat distribution, and the quest icon, so figuring out the best quest for you is that much simpler. 
+
+                        You can also search for other adventurers by selecting “Adventurer” instead of “Quest”, in the final filter. Switching to this mode will switch out the search table for a special Adventurer search table that’s better suited to helping you digest information about Adventurers. Rather than things like stat distribution and quest rating, you’ll see information like the Adventurers’ stats, their listed full name, and the city that they quest in.  
+
+                        <div class="image-row">
+                            <img src="{% static 'images/help/help_search_1.png' %}">
+                        </div>
+
+                        <br><hr><br>
+
+                        <h4>Profile Page</h4>
+
+                        <p>You can get to user profiles for users by clicking on their username any time you see it on the site - they can be found on search results, the dash, and on other profiles’ timelines. User profiles, including yours, display summary information about a user, like their full listed name, the city they quest in, their user icon, and how many quests they’ve done. They also list some of the allies they’ve made in their questing days, the quests they’re working on and the quests they’ve completed, and their stats. If you want to ally (or de-ally) with the person whose profile you’re viewing, there’s a button for that near the top of the page.</p>
+
+                        <p>The niftiest feature of the profile page is the quest log - users can access this on their allies’ profiles by clicking on the “View Quest Log” button. The page changes to show what looks like a photo album on the left, along with a timeline with nodes on the right. You can scroll down this timeline to later dates, and hover over nodes which represent the user’s completed quests for their information. Clicking on one of the nodes opens up the quest information on the left side, with the comments that the user’s allies have made, along with a box for you to leave your own comments in. You can view the user’s photos of triumph for that quest by selecting the challenges listed on the top right. </p>
+
+                        <div class="image-row">
+                            <img src="{% static 'images/help/help_profile_1.png' %}">
+                            <img src="{% static 'images/help/help_profile_2.png' %}">
+                        </div>
+
+                        <br><hr><br>
+
+                        <h4>Quest Page</h4>
+
+                        <p>Quest pages are pages for each individual quest which list their summary information. They work a lot like Adventurer profiles, so if you understand the format of one, it’s mondo-easy to understand the other! The quest page has important information and action items like the quest name, its rating, and buttons for accepting or forfeiting the quest (for quests you’ve posted, a “remove” button) right at the top, since they’re the ones you’ll want to access most quickly. Further down, you can see the Skill distribution for the quest, the list of challenges with locations, and some gorgeous Photos of Triumph that people have uploaded on completing the quest.  </p> 
+
+                        <div class="image-row">
+                            <img src="{% static 'images/help/help_quest_1.png' %}">
+                        </div>
+
+                        <br><hr><br>
+
+                        <h4>Account Settings</h4>
+
+                        <p>On this page you can change much of the personal information that you display on the site, as well as some of the information used for verification of your identity. Fields that we allow you to change include your full name, your password, your personal icon, your password, your email, and your city of residence. Explanations for how we use each piece of information are included on the settings page, so if you’re ever unsure of how we use this information, you can see it there. You can enter new settings for as many of the ones listed as you like - pushing any of the submission buttons will bring up a verification dialog that will ask you to confirm your new information. Upon confirmation, your information will be updated in our system, and all pages you visit afterwards will reflect this.  </p> 
+
+                        <br><hr><br>
+
+                        <h2>Credits</h2><br>
+                        <p>SideWalk wouldn't be possible without the help of many freely available technologies and resources:
+                            <ul>
+                                <li><a href="https://www.djangoproject.com/">Django</a></li>
+                                <li><a href="http://getbootstrap.com/">Twitter Bootstrap</a></li>
+                                <li><a href="http://jqueryui.com/">JQuery UI</a></li>
+                                <li><a href="http://www.google.com/fonts">Google Fonts</a></li>
+                                <li><a href="https://developers.google.com/maps/documentation/javascript/examples/places-autocomplete">Google Place Autocomplete</a></li>
+                                <li><a href="http://wbotelhos.com/raty/">jQuery Raty Plugin</a></li>
+                                <li><a href="http://memcached.org/">memcached</a></li>
+                                <li><a href="http://sorl-thumbnail.readthedocs.org/en/latest/">sorl-thumbnail</a></li>
+                                <li><a href="http://malsup.com/jquery/form/">jQuery Form Plugin</a></li>
+                                <li><a href="http://cubiq.org/iscroll-5">iScroll</a></li>
+                            </ul>
+                        </p>
+
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </body>
+</html>

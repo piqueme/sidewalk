@@ -1,0 +1,39 @@
+{% if form.quest_name.errors %} 
+<div class="alert alert-danger" id="qname-error-alert">
+    <strong> Uh-oh! </strong> You need to specify a legal quest name and description!
+</div>
+{% elif form.description.errors %}
+<div class="alert alert-danger" id="qname-error-alert">
+    <strong> Uh-oh! </strong> You need to specify a legal quest name and description!
+</div>
+{% endif %}
+
+{% if form.quest_icon.errors %}
+<div class="alert alert-danger" id="qicon-error-alert">
+    <strong> Oops! </strong> You need to upload an icon less than 2MB large!
+</div>
+{% endif %}
+
+{% if quest_exists %}
+<div class="alert alert-danger" id="qname-error-alert">
+    <strong> Uh-oh! </strong> That quest already exists!
+</div>
+{% endif %}
+
+{% if quest_headers_empty %}
+<div class="alert alert-danger" id="qname-error-alert">
+    <strong> Uh-oh! </strong> You need to specify a legal quest name and description!
+</div>
+{% endif %}
+
+{% if bad_stats %}
+<div class="alert alert-danger" id="stats-error-alert">
+    <strong> Whoops! </strong> Your specified stats need to be integers and add up to less than the distribution points!
+</div>
+{% endif %}
+
+{% if challenges_empty %}
+<div class="alert alert-danger" id="challenge-error-alert">
+    <strong> Gosh! </strong> All your challenge and location fields need to be filled!
+</div>
+{% endif %}

@@ -1,0 +1,16 @@
+<html>
+<body>
+	<h1> Submit Verification </h1>
+	<form enctype = "multipart/form-data" method="post">{% csrf_token %}
+	{% for field, challenge in zipped %}
+
+	<p> Challenge: {{ challenge.description }} </p>
+    <div class="fieldWrapper">
+        {{ field.errors }}
+        {{ field.label_tag }} {{ field }}
+    </div>
+    {% endfor %}
+	<input type="submit" value="Submit" />
+	</form>
+</body>
+</html>

@@ -1,0 +1,34 @@
+{% load static %}
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <!-- This draws the logo-->
+        <div class="navbar-header">
+          <a class="navbar-brand" href="../dash/">
+            <div class="logo"><span style="color: #eb2229">Side</span><span style="color: #a7a7a7">Walk</span></div></a>
+        </div>
+
+        <!-- These are the links-->
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="../dash/">Dash</a></li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Quest<b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    <li><a href="../post/">Post</a></li>
+                    <li><a href="../search/">Search</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span style="font-size: 1.2em;" class="glyphicon glyphicon-cog"></span><b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    <li><a href="../profile/{{ user.username }}">Profile</a></li>
+                    <li><a href="../account/">Settings</a></li>
+                    <li><a href="../help/">Help</a></li>
+                    <li><a href="../logout/">Log Out</a></li>
+                </ul>
+            </li>
+            <li>
+            <a href="#" id="pushy" ><span class="glyphicon glyphicon-comment" id="comments-icon"></span></a>
+            </li>
+        </ul>  
+      </div>
+    </nav>

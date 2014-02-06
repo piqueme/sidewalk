@@ -1,0 +1,173 @@
+html 
+{
+	overflow-y: scroll;
+}
+
+body
+{
+    background-color: #78aeac;
+    z-index: 1;
+    /*background-image: 'background.png'*/
+}
+
+#navbar {
+	z-index: 3;
+	background-color: #363636;
+	height: 50px;
+	width: 100%;
+	box-shadow: 0px 1px 10px #000000;
+	position:fixed;
+	top:0px;
+	padding-left:50px;
+	padding-top:10px;
+	padding-bottom:5px;
+	float: clear;
+	display: block;
+}
+
+.logo {
+	font-family: "Monda", sans-serif;
+	font-size: 24px;
+	max-width: 300px;
+	margin: 0;
+	display: inline-block;
+}
+
+#page-panel
+{
+    background-color: #edefee;
+    z-index: 2;
+    position: fixed;
+    top: 2em;
+    left: 10em;
+    width: 75em;
+    height: 300em;
+}
+
+#info-panel
+{
+	position: fixed;
+	top: 7.5em;
+}
+
+.section-panel
+{
+	position:relative;
+	width: 75em;
+	height: 13em;
+}
+
+#user-info-panel
+{
+    background-color: #bbd6ee;
+    color: #626262;
+}
+
+.section-header-box 
+{
+	background-color: #626262;
+    z-index: 3;
+    height: 2.5em;
+    width: 75em;
+}
+
+.section-header-text
+{
+    color: white;
+    font-size: 1.1em;
+    position: relative;
+    left: 2em;
+    top: .5em;
+}
+
+#user-icon
+{
+	position: absolute;
+	left: 7.5em;
+	top: 4.5em;
+	height: 6em;
+	width: 6em;
+}
+
+#username
+{
+	position: absolute;
+	left: 10em;
+    top: 2.4em;
+    font-size: 1.5em;
+    font-weight: 900;
+}
+
+#user-full-name 
+{
+	position: absolute;
+    left: 15em;
+    top: 5.5em;
+    font-size: 1.0em;
+    color: #696969;
+}
+
+#user-description 
+{
+	position: absolute;
+    left: 18.7em;
+    top: 11.5em;
+    font-size: .8em;
+}
+
+#right-info-container
+{
+	position: absolute;
+	left: 55em;
+	top: 3em;
+	width: 10em;
+	height: 10em;
+}
+
+#user-location
+{
+    position: relative;
+    left: .5em;
+    top: .5em;
+    font-size: .8em;
+}
+
+#skill-point-container 
+{
+	position: relative;
+    left: 9em;
+    top: .6em;
+    width: 50em;
+    height: 8.7em;
+}
+
+.stat-box
+{
+    height: 2.9em;
+}
+
+.stat-icon
+{
+    position: absolute;
+    left: 2em;
+    top: .5em;
+    height: 2em;
+    width: 2em;
+}
+
+.stat-value
+{
+    position: absolute;
+    left: 5.5em;
+    top: .4em;
+    font-size: .9em;
+}
+
+.stat-flavor
+{
+    position: absolute;
+    left: 6.85em;
+    top: 2.3em;
+    font-size: .72em;
+}
+

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+{% load postingstuff %}
+{% load static %}
+<div class="modal fade" id="quest-complete-dialog" tabindex="-1" rol="dialog" aria-labelledby="quest-complete" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="quest-dialog-title"> Quest Completion </h4>
+            </div>
+            <form enctype="multipart/form-data" action="complete" id="completion-form" method="POST"> {% csrf_token %}
+                <div class="modal-body" id="complete-body">
+                    <div id="complete-instructions"> Kapow! Congratulations on completing your quest! For each challenge, upload a picture and write some commemorative notes to celebrate your victory. </div>
+                    {% for challenge in challenges %}
+                    <div id="complete-challenge-descrip"><b>Challenge {{ forloop.counter }}</b> - {{ challenge.description }} at {{ challenge.location }}</div>
+                    <div class="row" id="challenge-{{ forloop.counter }}-row">
+                        <div class="col-md-4" id="challenge-{{ forloop.counter }}-image">
+                            <input class="form-control" type="file" name="verify-image-{{ forloop.counter }}" id="verify-image-{{ forloop.counter }}"> 
+                        </div>
+                        <div class="col-md-8" id="challenge-notes-{{ forloop.counter }}">
+                            <input class="form-control" type="text" name="verify-notes-{{ forloop.counter }}" id="verify-notes-{{ forloop.counter }}" placeholder="Comment on this challenge">
+                        </div>
+                    </div>
+                    <br>
+                    {% endfor %}
+                    <div class='rating-bar' id='complete-rating'>Rate this quest: <div id='complete-star'></div></div>
+                    <input type="hidden" name="rating" id="rating" value="0">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal"> Close </button>
+                    <input type="hidden" id="id" name="id" value=""/>
+                    <button type="submit" name="complete" class="btn btn-primary"> Submit </button>
+                </div>
+            </form>
+        </div> <!-- /.modal-content -->
+    </div> <!-- /.modal-dialog -->
+</div> <!-- /.modal -->

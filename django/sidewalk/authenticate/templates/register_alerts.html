@@ -1,0 +1,29 @@
+{% if reg_form.email.errors %}
+<div class="alert alert-danger" id="email-error-alert">
+    Email: {{ reg_form.email.errors }}
+</div>
+{% endif %}
+
+{% if reg_form.first_name.errors %}
+<div class="alert alert-danger" id="name-error-alert">
+    First Name: {{ reg_form.first_name.errors }}
+</div>
+{% endif %}
+
+{% if reg_form.last_name.errors %}
+<div class="alert alert-danger" id="name-error-alert">
+    Last Name: {{ reg_form.last_name.errors }}
+</div>
+{% endif %}
+
+{% if reg_form.username.errors %}
+<div class="alert alert-danger" id="username-error-alert">
+    Username: {{ reg_form.username.errors }}
+</div>
+{% endif %}
+
+{% if reg_form.password.errors %}
+<div class="alert alert-danger" id="password-error-alert">
+    Password: {{ reg_form.password.errors }}
+</div>
+{% endif %}

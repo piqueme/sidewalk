@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+{% load postingstuff %}
+{% load thumbnail %} 
+<html>
+    <head>
+        {% load static %}
+        <meta charset="utf-8">
+        <title> Sidewalk Quest Page </title>
+        {% include 'imports.html' %}
+        <link href="{% static 'css/quest_page.css' %}" rel="stylesheet">
+        <link href="{% static 'css/completion_modal.css' %}" rel="stylesheet">
+        <script src="{% static 'js/quest_page.js' %}"></script>
+        
+
+        <script>
+        $(function(){
+            $('#star').raty({
+                readOnly  : true,
+                cancel    : false,
+                //half      : true,
+                size      : 25,
+                starHalf  : 'star-half.png',
+                starOff   : 'star-off.png',
+                starOn    : 'star-on.png',
+                path      : "{% static 'images' %}",
+                score: function() {
+                    return $(this).attr('data-score');
+                }
+            });
+        });
+
+        $(function(){
+            $('#complete-star').raty({
+                //half: true,
+                size: 25,
+                starHalf: 'star-half.png',
+                starOff: 'star-off.png',
+                starOn: 'star-on.png',
+                path: "{% static 'images' %}",
+                click: function(score, evt) {
+                    $('#rating').val(score);
+                }
+            });
+        });
+        </script>
+
+    </head>
+    <body>
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <!-- This draws the logo-->
+        <div class="navbar-header">
+          <a class="navbar-brand" href="../../dash/">
+            <div class="logo"><span style="color: #eb2229">Side</span><span style="color: #a7a7a7">Walk</span></div></a>
+        </div>
+
+        <!-- These are the links-->
+        <ul class="nav navbar-nav navbar-right">
+      		<li><a href="../../dash/">Dash</a></li>
+      		<li class="dropdown">
+        		<a href="#" class="dropdown-toggle" data-toggle="dropdown">Quest<b class="caret"></b></a>
+        		<ul class="dropdown-menu">
+          			<li><a href="../../post/">Post</a></li>
+          			<li><a href="../../search/">Search</a></li>
+        		</ul>
+      		</li>
+      		<li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span style="font-size: 1.2em;" class="glyphicon glyphicon-cog"></span><b class="caret"></b></a>
+        		<ul class="dropdown-menu">
+         	 		<li><a href="../../profile/{{ user.username }}">Profile</a></li>
+          			<li><a href="../../account/">Settings</a></li>
+          			<li><a href="../../help/">Help</a></li>
+                    <li><a href="../../logout">Log Out</a></li>
+        		</ul>
+      		</li>
+            <li>
+            <a href="#" id="pushy" ><span class="glyphicon glyphicon-comment" id="comments-icon"></span></a>
+            </li>
+    	</ul>  
+      </div>
+    </nav>
+
+                <div id="panel">
+
+                    <div class="section-panel" id="quest-info-panel">
+                        <div class="page-header" id="quest-header"> 
+                            <h2> Quest Information </h2>
+                        </div>    
+                        <div id="quest-info-left">
+                            <div class="quest-icon-wrapper">
+                                {% thumbnail quest.icon "200x200" padding=True padding_color="#e3e3e3" as im %}
+                                    <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" id="quest-icon"> 
+                                {% endthumbnail %}
+                            </div>
+                            <div id="quest-text">
+                                <span id="quest-name"> {{ quest.name }} </span>
+                                <div class="rating-bar" id="quest-rating"><div id="star" data-score="{{ quest.rating }}"></div></div>
+                                <span id="quest-desc"> {{ quest.description }} </span>
+                            </div>
+                        </div>
+                        <div id="quest-info-right">
+                            <p id="quest-poster"> Poster: <a href="{{ profile_page }}/{{ poster.username }}">{{ poster.username }}</a></p>
+                            {% if quest.city == user.quser.location %} 
+                            {% if button_status == "current" %}
+                                <form id="accept-button-form" action="accept" method="post"> {% csrf_token %}
+                                    <button type="submit" class="btn btn-success btn-sm" id="accept-button" style="display: none;"> ACCEPT </button>
+                                </form>
+                                <!-- <p><button type="button" class="btn btn-success btn-sm" id="complete-button"> COMPLETE </button></p> -->
+                                <form id="completed-button-form"> {% csrf_token %}
+                                    <button type="button" class="btn btn-success btn-sm" id="complete-button"> COMPLETE </button>
+                                </form>
+                                <form id="forfeit-button-form" action="forfeit" method="post"> {% csrf_token %}
+                                    <button type="submit" class="btn btn-warning btn-sm qpage-button" id="forfeit-button"> FORFEIT </button>
+                                </form>
+                                <p id="completed-tag" style="display: none; font-weight:bold;">Completed!</p>
+
+
+                            {% elif button_status == "posted" %}
+                                <form id="remove-button-form" action="remove" method="post"> {% csrf_token %}
+                                    <button type="submit" class="btn btn-warning btn-sm" id="remove-button"> REMOVE </button>
+                                </form>
+
+                            {% elif button_status == "completed" %}
+                                <p id="completed-tag">Completed!</p>
+
+                            {% elif button_status == "none" %}
+                                <form id="accept-button-form" action="accept" method="post"> {% csrf_token %}
+                                    <button type="submit" class="btn btn-success btn-sm" id="accept-button"> ACCEPT </button>
+                                </form>
+                                <p><button type="button" class="btn btn-success btn-sm" id="complete-button" style="display: none;"> COMPLETE </button></p>
+                                <form id="forfeit-button-form" action="forfeit" method="post"> {% csrf_token %}
+                                    <button type="submit" class="btn btn-warning btn-sm qpage-button" id="forfeit-button" style="display: none;"> FORFEIT </button>
+                                </form>
+                                <p id="completed-tag" style="display: none; font-weight: bold;">Completed!</p>
+
+                                {% endif %}
+                            {% else %}
+                            <div id="quest-city">
+                                <span style="color: #5c5c5c"> City: {{ quest.city }} </span><br>
+                                <span style="color: #b5b5b5"> This quest is not in your city! </span>
+                            </div>
+                            {% endif %}
+
+                        </div>
+                    </div>
+
+                    <div class="alert alert-success" id="forfeit-success-alert">
+                        <strong> Success </strong> You successfully forfeited this quest!
+                    </div>
+                    <div class="alert alert-success" id="remove-success-alert">
+                        <strong> Success </strong> You successfully removed this quest!
+                    </div>
+                    <div class="alert alert-success" id="accept-success-alert">
+                        <strong> Success </strong> You successfully accepted this quest!
+                    </div>
+                    <div class="alert alert-warning" id="forfeit-error-alert">
+                        <strong> Error </strong> You have already forfeited this quest! Please refresh this page.
+                    </div>                    
+                    <div class="alert alert-warning" id="accept-error-alert">
+                        <strong> Error </strong> You have already accepted this quest! Please refresh this page.
+                    </div>
+                    <div id="quest-content-panel">
+                    <div class="section-panel panel panel-default" id="skills-panel">
+                        <div class="section-header panel-heading" id="skills-header">
+                            <h2> Skill Rewards </h2>
+                        </div>
+                        <div id="skill-point-container" class="panel-body">
+                            {% for row in rows %}
+                            <div class="row" id="stat-row-{{ row }}">
+                                {% for col in cols %}
+                                <div class="col-xs-{{ colwidth }} stat-box">
+                                    <img class="stat-icon" src="{% static 'images' %}/{{ row|multiply:numcols|add:col|getval:stat_list|lower }}.png" alt="Sexy">
+                                    <div class="stat-info"><p class="stat-value">{{ row|multiply:numcols|add:col|getval:stat_list }}: {{ row|multiply:numcols|add:col|getval:stats }} </p>
+                                    <p class="stat-flavor">{{ row|multiply:numcols|add:col|getval:stat_flavor }} </p></div>
+                                </div> 
+                                {% endfor %}
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+
+                    
+                    <div class="section-panel panel panel-default" id="challenges-panel">
+                        <div class="section-header panel-heading" id="challenges-header">
+                            <h2> Challenges </h2>
+                        </div>
+                        <div id="challenge-container" class="panel-body">
+                            
+                                <div class="row">
+                                    <table class="table">
+                                        {% for challenge in challenges %}
+                                        <tr class="challenge-row">
+                                            <td>
+                                                <p class="challenge-id-text" id="challenge-id-{{ forloop.counter }}"> Challenge {{ forloop.counter }} </p>
+                                            </td>
+                                            <td>
+                                                <p class="challenge-desc" id="challenge-{{ forloop.counter }}"> {{ challenge.description }} </p>
+                                            </td>
+                                            <td class="col-md-5">
+                                                <p class="location-desc" id="location-{{ forloop.counter }}"> {{ challenge.location }}
+                                                </p>
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+                                    </table>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                    <div class="section-panel  panel panel-default" id="photos-panel">
+                        <div class="section-header panel-heading" id="photos-header">
+                            <h2> Photos of Triumph </h2>
+                        </div>
+                        <a class="lefty" href="#thumbnail-viewer" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
+                        <div class="row thumbnail-viewer-container panel-body">
+                            <div class="col-xs-12">
+                                <div class="well">
+                                    <div class="carousel slide" data-interval="false" data-wrap="false" id="thumbnail-viewer">
+
+                                        <!-- Carousel Items -->
+                                        <div class="carousel-inner">
+                                            <div class="item active"> 
+                                                <div class="row thumb-row">
+                                                    {% for count in 6|get_range %}
+                                                    {% if count|getval:photos %}
+                                                    <div class="col-xs-2 thumbnail-col">
+                                                        {% thumbnail count|getval:photos "100x100" padding=True padding_color="#e3e3e3" as im %}
+                                                                <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" class="img-responsive"> 
+                                                        {% endthumbnail %}
+                                                    </div>
+                                                    {% else %}
+                                                    <div class="col-xs-2 thumbnail-col">
+                                                    </div>
+                                                    {% endif %}
+                                                    {% endfor %}
+                                                </div>
+                                            </div>
+                                            {% for upcount in 2|get_range %}
+                                            {% if upcount|add:1|multiply:6|getval:photos %} 
+                                            <div class="item"> 
+                                                <div class="row thumb-row">
+                                                    {% for count in 6|get_range %}
+                                                    <div class="col-xs-2 thumbnail-col">
+                                                        {% if upcount|add:1|multiply:6|add:count|getval:photos %} 
+                                                        {% thumbnail upcount|add:1|multiply:6|add:count|getval:photos "100x100" padding=True padding_color="#e3e3e3" as im %}
+                                                                <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" class="img-responsive"> 
+                                                        {% endthumbnail %}
+                                                        {% endif %}
+                                                    </div>
+                                                    {% endfor %}
+                                                </div>
+                                            </div>
+                                            {% endif %}
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <a class="righty" href="#thumbnail-viewer" data-slide="next"><span class="glyphicon glyphicon-chevron-right"</span></a>
+                    </div>
+                </div>
+            </div> <!-- end quest-content-panel -->
+
+        {% include 'quest_complete.html' %}
+        {% include 'quest_success.html' %}
+        {% include 'comments_panel.html' %}
+    </body>
+</html>

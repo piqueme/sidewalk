@@ -1,0 +1,32 @@
+{% if current_quests %}
+<!DOCTYPE html>
+{% load postingstuff %}
+{% load thumbnail %}
+
+<div id="removable" style="display:none;">
+<table class="table table-hover">
+{% for quest in current_quests %}
+<tr>
+    <td><div class="quest-icon-wrapper">
+        {% thumbnail quest.icon "200x200" padding=True as im %}
+            <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" class="quest-icon"> 
+        {% endthumbnail %} 
+    </div></td>
+    <td><h4 class="quest-title ellipsis"><a href="../quest/{{ quest.id }}-{{ quest.user_posted_name }}">{{ quest.name }}</a></h4>
+        <p class="quest.description">{{ quest.description }}</p></td>
+    <td>
+    <div class="table-buttons-box">
+        <form class="completed-button-form" id="completed-form-{{ quest.id }}-{{ quest.user_posted_name }}" method="post"> {% csrf_token %}
+            <button type="button" class="btn btn-accept btn-success btn-xs table-button"> COMPLETE </button>
+        </form>
+        <form class="forfeit-button-form" id="forfeit-form-{{ quest.id }}-{{ quest.user_posted_name }}" action='forfeit' method="post">  {% csrf_token %}
+            <button type="submit" class="btn btn-forfeit btn-warning btn-xs table-button"> FORFEIT </button>
+        </form>
+        <!-- <button type="button" class="btn btn-success btn-xs table-button">COMPLETE</button>
+        <button type="button" class="btn btn-warning btn-xs table-button">FORFEIT</button></td> -->
+    </div></td>
+</tr>
+{% endfor %}
+<table>
+</div>
+{% endif %}

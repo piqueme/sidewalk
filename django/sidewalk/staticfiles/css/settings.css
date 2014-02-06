@@ -1,0 +1,62 @@
+.alert {
+    margin-top: 15px;
+}
+
+.field-label {
+	font-size: 1.2em;
+	font-weight: bold;
+	display: inline-block;
+}
+
+h2 {
+    font-size: 2.5em;
+}
+
+h4 {
+    text-align: right;
+}
+
+p {
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 20px;
+    padding-bottom: 10px;
+}
+
+.comment-notice {
+    padding-left: 0px;
+    padding-right: 20px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+.form-control {
+    margin-bottom: 15px;
+}
+
+.btn-primary {
+    margin-top: 24px;
+}
+
+#verify-submit-button {
+    margin-top: 2px;
+}
+
+#settings-verify-title {
+    padding-right: 20px;
+}
+
+#accordion {
+
+}
+
+#panel {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+}
+
+#panel-header {
+    margin-top: 100px;
+    margin-left: 5%;
+}

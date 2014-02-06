@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        {% load static %}
+        <title>Sidewalk</title>
+
+        <link href="{% static 'css/bootstrap.css'%}" rel="stylesheet">
+        <link href="{% static 'css/jquery-ui.custom.css'%}" rel="stylesheet">
+        <link href='http://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic|Monda|Montserrat:400,700' rel='stylesheet' type='text/css'>
+        <link href="{% static 'css/base.css'%}" rel="stylesheet">
+        <link href="{% static 'css/home.css'%}" rel="stylesheet">
+
+
+        <script src="{% static 'js/jquery-1.9.1.js'%}"></script>
+        <script src="{% static 'js/jquery-ui-1.10.3.custom.js'%}"></script>
+        <script src="{% static 'js/jquery.form.js' %}"></script>
+        <script src="{% static 'js/bootstrap.min.js'%}"></script>
+        <script src="{% static 'js/home.js'%}"></script>
+    </head>
+
+    <body>
+        <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <div class="container">
+                <!-- This draws the logo-->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">
+                        <div class="logo"><span style="color: #eb2229">Side</span><span style="color: #a7a7a7">Walk</span></div></a>
+                </div>
+
+                <!-- This is the login-->
+                <div class="navbar-collapse collapse">
+                    <form class="navbar-form navbar-right" id="login-form" role="form" action="../login/" method="POST"> {% csrf_token %}
+                        {% for field in login_form %}
+                        <div class="form-group">
+                            {{ field }}
+                            <!--<input type="text" placeholder="Username" class="form-control">}}-->
+                        </div>
+                        {% endfor %}}
+                        <!-- <div class="form-group">
+                            <input type="password" placeholder="Password" class="form-control">
+                        </div> -->
+                        <button type="submit" name="login" class="btn btn-primary">Sign in</button>
+                    </form>
+                </div><!--/.navbar-collapse -->
+            </div>
+        </div>
+
+<!-- _____________________________________________________________ -->
+
+        <!-- Here go the hidden login error boxes -->
+
+        <section id="section0" data-speed="6" data-type="background">
+            {% include 'login_problems.html' %}  
+            <div class="container">
+            </div>
+        </section>
+
+        <section id="section1" data-speed = "12" data-type="background">
+            <div class="container" id="info-doodle">
+                        <div class="row">
+
+                            <div class="col-xs-4" id="doodle-column-left">
+                                <div class="container doodle-container">
+                                    <div class="row">
+                                        <img src="{% static 'images/doodle_poster_12.png '%}" class="doodle-image">
+                                    </div>
+
+                                    <div class="row">
+                                        <img src="{% static 'images/doodle_quester_12.png '%}" class="doodle-image">
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+                            <div class="col-xs-4" id="info-doodle-text">
+                                <h2><span style="color: #eb2229">SIDE</span><span style="color: #a7a7a7">WALK</span></h2>
+                                <p style="margin-top: 20px; margin-bottom: 20px">Glorious adventures in your city await
+                                </p>
+                                <p><a class="btn btn-primary btn-lg" role="button" href="#signup">Sign Up</a></p>
+                            </div>
+
+                            <div class="col-xs-4" id="doodle-column-right">
+                                <div class="container doodle-container" style="margin: 0">
+                                    <div class="row">
+                                        <img src="{% static 'images/doodle_poster_34.png '%}" class="doodle-image">
+                                    </div>
+
+                                    <div class="row">
+                                        <img src="{% static 'images/doodle_quester_34.png '%}" class="doodle-image">
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                
+            </div>
+        </section>
+
+
+<!-- _____________________________________________________________ -->
+
+        <section id="section2" data-speed="6" data-type="background">
+                <div class="container">
+                </div>
+        </section>
+
+
+<!-- _____________________________________________________________ -->
+        <a name="signup"></a>
+        <section id="section3" data-speed="4" data-type="background">
+        <div class="container" id="signup-container">
+            <div class="row" id="signup-row">
+                <div class="col-xs-5">
+
+                    <div id="panel-signup">
+                    <h2>Sign Up</h2><br>
+                    <form role="form" enctype="multipart/form-data" class="form-inline" id="register-form" action="../register/" method="POST"> {% csrf_token %}
+
+                        {% for field in reg_form %}
+                        <div class="form-group">
+                                {{ field }}
+                        </div>
+                        {% endfor %}
+
+                        <div class="form-group">
+                        <div class="checkbox" id="agree">
+                            <input type= "checkbox" name= "agree"></input><label> I agree to use this website only for good, and never for evil.</label>
+                        </div></div><br><br>
+                        <p><button type="submit" name="registration" class="btn btn-primary" style="margin-bottom: 10px; margin-left: 20px" id="submit-button">Submit</button></p>
+
+                    </form>
+                </div>
+                </div>
+
+
+                <div class="col-xs-7" id="signup-info">
+                    <div id="screenshot-search" class="media">
+                         <a class="pull-left" href="#">
+                            <img class="media-object" src="{% static 'images/homepage_1.png' %}" alt="Search for Quests">
+                          </a>
+                          <div class="media-body">
+                            <h4 class="media-heading">Find your Quest</h4>
+                            <p>Explore the freshest ristorantes. Find the illest city beats. Discover the farmers’ market that rocks your socks off.</p>
+                          </div>                       
+                        
+                    </div>
+
+                    <div id="screenshot-post" class="media">
+                        
+                        <a class="pull-right" href="#">
+                            <img class="media-object" src="{% static 'images/homepage_2.png' %}" alt="Post a Quest">
+                          </a>
+                          <div class="media-body" style="text-align: right">
+                            <h4 class="media-heading">Share Your Wisdom</h4>
+                            <p>Spread the love by sharing fun activities in your city and challenging your homies to get outside and become <b>not</b>homies!</p>
+                          </div> 
+                    </div>
+
+                    <div id="screenshot-log" class="media">
+                        <a class="pull-left" href="#">
+                            <img class="media-object" src="{% static 'images/homepage_3.png' %}" alt="...">
+                          </a>
+                          <div class="media-body">
+                            <h4 class="media-heading">Socialize</h4>
+                            <p>Get jiggy with your homeslices. Share experiences with photos and comments, and keep updated on their questing adventures.</p>
+                          </div> 
+                    </div>
+                </div>
+        </div>
+        <!-- All initially invisible, appeneded appropriately  -->
+        {% include 'register_user_problems.html' %}
+        {% include 'register_password_problems.html' %}
+        {% include 'register_email_problems.html' %} 
+        </section>
+
+<!-- _____________________________________________________________ -->
+
+        <section id="section4" data-speed="6" data-type="background">
+            <div class="container">
+            </div>
+        </section>
+
+
+<!-- _____________________________________________________________ -->
+
+            <footer>
+                <p>&copy; !homies 2014</p>
+            </footer>
+        </div> <!-- /container -->
+    </body>
+</html>

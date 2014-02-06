@@ -1,0 +1,119 @@
+#search-big-table {
+    /*background-color: #E8F1F9;
+    border-radius: 5px;
+    */
+    position:relative;
+    height: 1600px;
+    overflow: auto;
+}
+
+
+#search-small-table {
+    background-color: #ffffff;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #dddddd;
+    position:absolute;
+}
+
+#user-search-table {
+    background-color: #ffffff;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #dddddd;
+    position:absolute;
+}
+
+.search-form {
+    display: inline-block !important;
+
+}
+
+.search-form {
+    display: inline-block !important;
+    clear: none !important;
+    /*max-width: 200px;*/
+}
+
+.search-param {
+
+}
+
+#keywords-col {
+    padding-right: 0px;
+}
+
+#button-col {
+    padding-left: 0px;
+}
+
+#search-param-row {
+    
+}
+
+button {
+    display: inline-block;
+    clear: none;
+}
+
+h1 small, h2 small, h3 small, h1 .small, h2 .small, h3 .small {
+	font-size: 50%;
+}
+
+.quest-name {
+    font-size: 1.4em;
+    font-color: #5C5C5C;
+    overflow: hidden;
+}
+
+.quest-icon {
+    width: 100px;
+    height: 100px;
+}
+
+.quest-icon-wrapper {
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+#skill-point-container
+{
+    width: 230px;
+}
+
+.stat-box
+{
+    height: 2.9em;
+}
+
+.stat-icon
+{
+    height: 20px;
+    width: 20px;
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.stat-value
+{
+
+    display: inline-block;
+
+}
+
+.row {
+	margin-right: 0;
+}
+
+.see-more {
+	text-align: center;
+	background-color: #f5f5f5;
+	width: 100%;
+    margin: 10px;
+	float: right;
+	font-size: 14px;
+	font-weight: bold;
+}

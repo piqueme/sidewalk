@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+{% load postingstuff %} 
+{% load thumbnail %} 
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    {% load static %}
+    <title>Sidewalk - Dashboard</title>
+
+    {% include 'imports.html' %}
+    
+    <link href="{% static 'css/dash.css' %}" rel="stylesheet">
+    <link href="{% static 'css/completion_modal.css' %}" rel="stylesheet">
+
+    <script>
+        $('.dropdown-toggle').dropdown();
+
+        $('.collapse').collapse();
+
+        $('#button-box').affix({
+            offset: {
+                bottom: function (){
+                    return (this.bottom = $('.bs-footer').outerHeight(true))
+                }
+            }
+         });
+
+        $(function(){
+            $('.star').raty({
+                readOnly  : true,
+                cancel    : false,
+                //half      : true,
+                size      : 25,
+                starHalf  : 'star-half.png',
+                starOff   : 'star-off.png',
+                starOn    : 'star-on.png',
+                path      : "{% static 'images' %}",
+                score: function() {
+                    return $(this).attr('data-score');
+                }
+            });
+        });
+
+        $(function(){
+            $('#complete-star').raty({
+                //half: true,
+                size: 25,
+                starHalf: 'star-half.png',
+                starOff: 'star-off.png',
+                starOn: 'star-on.png',
+                path: "{% static 'images' %}",
+                click: function(score, evt) {
+                    $('#rating').val(score);
+                }
+            });
+        });
+
+    </script>
+    <script src="{% static 'js/base.js' %}"></script>
+    <script src="{% static 'js/dash.js' %}"></script>
+  </head>
+
+  <body>
+
+    {% include "navbar.html" %}
+
+<!-- _____________________________________________________________ -->
+
+<div id= "panel">
+    <div id="panel-header" >
+        <div class="page-header">
+            <h3>Dash <small> your way to city-exploring victory!</small></h3>
+        </div>
+    </div>
+
+    <div id="content-panel">
+    
+        <div class="row">
+            <div class="btn-group-vertical" data-spy="affix" id="buttons-box">
+                <a href="../search"><button class="btn btn-success" id="start-button"><!-- <img src="{% static 'images/icon_scroll.png' %}"> --> Find a Quest</button></a>
+                <a href="../post"><button class="btn btn-primary" id="post-button"><!-- <img src="{% static 'images/icon_exclamationmark.png' %}"> --> Post a Quest</button></a>
+                <a href="../profile/{{ user.username }}"><button class="btn btn-warning" id="manage-button"><!-- <img src="{% static 'images/icon_book.png' %}"> -->  View Profile </button></a>
+                <a href="../help"><button class="btn btn-info" id="help-button"><!-- <img src="{% static 'images/icon_questionmark.png' %}">  --> Help & FAQ</button></a>
+                <div class="alert alert-success" id="forfeit-success-alert">
+                    <strong> Success </strong> You successfully forfeited this quest!
+                </div>
+                <div class="alert alert-warning" id="forfeit-error-alert">
+                    <strong> Error </strong> You have already forfeited this quest! Please refresh this page.
+                </div>                  
+            </div>
+
+            <div class="col-xs-9 panel-group" id="accordion">
+                <div id="instructions">
+                    <h4>Hello there! You must be {{user.first_name}} {{user.last_name}}!</h4>
+                    <p> A dazzling world of glorious adventures in your city awaits! </p>
+                </div>
+
+                <div id="daily-box">
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h2><a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">&raquo; Quest of the Day</a></h2>
+                        </div>
+
+                        <div id="collapseOne" class="panel-collapse collapse in">
+                            <div class="panel-body">
+                                <table class="table" id="daily-table"><tr>
+                                    <td><a href="../quest/{{ daily_quest.id }}-{{ daily_quest.user_posted_name }}">
+                                        <div id="daily-quest-icon-wrapper">
+                                              {% thumbnail daily_quest.icon "256x256" padding=True as im %}
+                                              <img src="{{ im.url }}" id="daily-quest-icon">
+                                              {% endthumbnail %}
+                                        </div>
+                                    </a></td>
+
+                                    <td>
+                                        <h4><a href="../quest/{{ daily_quest.id }}-{{ daily_quest.user_posted_name }}" id="daily-name" class="ellipsis">{{ daily_quest.name }}</a></h4>
+                                        <div id="daily-description">{{ daily_quest.description }}</div>
+                                    </td>
+                                    <td>
+                                        <div id="daily-rating">
+                                            <div class="star" data-score="{{ daily_quest.rating }}"></div>
+                                            <!-- <div class="daily-buttons"><button type="button" class="btn btn-success">ACCEPT</button></div> -->
+                                        </div>
+                                    </td>
+                                </tr></table>
+
+                            </div>
+                        </div> <!-- collapseOne -->
+                    </div> <!-- panel (daily)-->
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h2><a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">&raquo; Current Quests</a></h2>
+                        </div>
+                        <div id="collapseTwo" class="panel-collapse collapse">
+                            <div class="panel-body" id="current-panel">
+                                <table class="table table-hover" id="current-table">
+                                {% for quest in current_quests %}
+                                <tr>
+                                    <td><div class="quest-icon-wrapper">
+                                        {% thumbnail quest.icon "200x200" padding=True as im %}
+                                            <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" class="quest-icon"> 
+                                        {% endthumbnail %} 
+                                    </div></td>
+
+
+                                    <!-- <td><h4 class="quest-title"><a href="../quest/{{ quest.id }}-{{ quest.user_posted_name }}"> {{ quest.name }} </a></h4>
+                                        <p class="quest.description"> {{ quest.description }}</p></td> -->
+
+                                    <td><h4 class="quest-title ellipsis"><a href="../quest/{{ quest.id }}-{{ quest.user_posted_name }}">{{ quest.name }}</a></h4>
+                                        <p class="quest.description">{{ quest.description }}</p></td>
+                                    <td>
+                                    <div class="table-buttons-box">
+                                        <form class="completed-button-form" id="completed-form-{{ quest.id }}-{{ quest.user_posted_name }}" method="get"> {% csrf_token %}
+                                            <button type="submit" class="btn btn-complete btn-success btn-xs table-button" id="complete-button-{{ quest.id }}-{{ quest.user_posted_name }}"> COMPLETE </button>
+                                        </form>
+                                        <form class="forfeit-button-form" id="forfeit-form-{{ quest.id }}-{{ quest.user_posted_name }}" action='forfeit' method="post">  {% csrf_token %}
+                                            <button type="submit" class="btn btn-forfeit btn-warning btn-xs table-button"> FORFEIT </button>
+                                        </form>
+                                        <!-- <button type="button" class="btn btn-success btn-xs table-button">COMPLETE</button>
+                                        <button type="button" class="btn btn-warning btn-xs table-button">FORFEIT</button></td> -->
+                                    </div>
+
+                                    <!-- <td><h4><a href="../quest/{{ quest.id }}-{{ quest.user_posted_name }}">{{ quest.name }}</a></h4>
+                                        <p>{{ quest.description }}</p></td>
+                                    <td><div class="star" data-score="{{ quest.rating }}"></div></td>
+                                    <td>
+                                        <form id="completed-button-form"> {% csrf_token %}
+                                            <button type="button" class="btn btn-accept btn-success btn-sm" id="complete-button-{{ quest.id }}-{{ quest.user_posted_name }}"> COMPLETE </button>
+                                        </form>
+                                        <form class="forfeit-form-class" id="forfeit-button-form" action='forfeit' method="post">  {% csrf_token %}
+                                            <button type="submit" class="btn btn-forfeit btn-warning btn-sm qpage-button" id="forfeit-button-{{ quest.id }}-{{ quest.user_posted_name }}"> FORFEIT </button>
+                                        </form>
+                                    </td> -->
+                                </tr>
+                                {% endfor %}
+                                </table>
+                                <div class="see-more" id="current-more"><a href='#' id="next-current">See More</a></div>
+                            </div> <!-- panel -->
+                        </div> <!-- collapse two -->
+                </div> <!-- panel (current) -->
+
+                <div class="panel panel-default" id="allies-box">
+                  <div class="panel-heading">
+                    <h2><a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">&raquo; Allies' Quests</a></h2>
+                  </div>
+                  <div id="collapseThree" class="panel-collapse collapse">
+                      <div class="panel-body">
+                        <table class="table table-hover" id="ally-table">
+                                {% for quest in ally_quests %}
+                                <tr>
+                                    <td><div class="quest-icon-wrapper">
+                                        {% thumbnail quest.current_quest.icon "200x200" padding=True as im %}
+                                            <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" class="quest-icon"> 
+                                        {% endthumbnail %} 
+                                    </div></td>
+                                    <td><h4 class="quest-title ellipsis"><a href="../quest/{{ quest.current_quest.id }}-{{ quest.current_quest.user_posted_name }}">{{ quest.current_quest.name }}</a></h4>
+                                        <p>{{ quest.current_quest.description }}</p></td>
+                                    <td>
+                                        <div class="star" data-score="{{ quest.current_quest.rating }}"></div>
+                                        <div class="ally-name">(ally: <a href="../profile/{{ quest.current_user.user.username }}"><b> {{ quest.current_user.user.username }} </b></a>)</div>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                                </table>
+                                <div class="see-more" id="allied-more"><a href="#" id="next-allied">See More</a></div>
+                      </div> <!-- panel body-->
+                  </div> <!-- collapse three -->
+                </div> <!-- panel (allies) -->
+
+
+
+
+                </div> <!-- daily box -->
+            </div> <!-- accordion -->
+        </div> <!-- row -->
+
+
+        </div> <!-- content-panel -->
+    </div> <!-- panel -->
+
+    <div class="modal fade" id="quest-complete-dialog" tabindex="-1" rol="dialog" aria-labelledby="quest-complete" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="quest-dialog-title"> Quest Completion </h4>
+                </div>
+            </div> <!-- /.modal-content -->
+        </div> <!-- /.modal-dialog -->
+    </div> <!-- /.modal -->
+
+
+</div>
+
+
+    <!-- {% include 'quest_complete_form.html' %} -->
+    {% include 'comments_panel.html' %}
+    
+  </body>
+</html>
+
+
+
+
+
+
+
+
+
+<!--<html>
+<body>
+<h1> Dashboard </h1>
+<h2> You must be {{user.first_name}} {{user.last_name}}! </h2>
+</body>
+</html>-->

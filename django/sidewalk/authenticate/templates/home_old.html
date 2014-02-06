@@ -1,0 +1,63 @@
+<html>
+    <head>
+        {% load static %}
+        <meta charset="utf-8">
+	<title>Sidewalk Homepage</title>
+        <link href="{% static 'css/jquery-ui.custom.css'%}" rel="stylesheet">
+        <link href="{% static 'css/base.css'%}" rel="stylesheet">
+        <link href='http://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic|Monda|Montserrat:400,700' rel='stylesheet' type='text/css'>
+
+        <script src="{% static 'js/jquery-1.9.1.js'%}"></script>
+        <script src="{% static 'js/jquery-ui-1.10.3.custom.js'%}"></script>
+        <script src="{% static 'js/home.js'%}"></script>
+    </head>
+    <body>
+        <div id="navbar">
+            <div class="logo"><span style="color: #a7a7a7">Side</span><span style="color: #1473c4">Walk</span></div>
+            <div id="navbar-login">
+                <form action="/home/" method="POST"> {% csrf_token %} 
+                    <h2> Login Information </h2>
+                    {% for field in login_form %}
+                    <div class="fieldWrapper">
+                        {{ field.errors }}
+                        {{ field.label_tag }} {{ field }}
+                    </div>
+                    {% endfor %}
+                    <p><input type="submit" name="login" value="Login" /></p>
+                </form>
+                {% if incorrect %}
+                <p> No, you are not a user! </p>
+                {% endif %}
+            </div>
+        </div>
+        <div id="panel">
+            <div id="banner">
+                <h3><span style="color:#ffffff">
+                    Your very own urban adventure is about to unfold.
+                </span></h3>
+            </div>
+            <div id="panel-signup">
+                <form action="/home/" method="POST"> {% csrf_token %}
+                    <h2> Registration Information </h2>
+                    {% for field in reg_form %}
+                    <div class="fieldWrapper">
+                        {{ field.errors }}
+                        {{ field.label_tag }} {{ field }}
+                    </div>
+                    {% endfor %}
+                    <p><input type="submit" name="registration" value="Submit Registration" /></p>
+                </form> 
+                {% if invalid_uname %}
+                <p> Ha! You fool! {{ invalid_uname }} is an existing username! </p>
+                {% endif %}
+                {% if invalid_email %}
+                <p> Ha! You fool! {{ invalid_email }} is an existing email! </p>
+                {% endif %}
+            </div>
+
+            <div id="panel-doodle">
+                <img src="{% static 'images/home_doodle.png'%}">
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+{% load postingstuff %}
+{% load thumbnail %}
+<html>
+    <head>
+        {% load static %}
+        <meta charset="utf-8">
+        <title>{{ quser.user.username }}'s Profile Page </title>
+        
+        {% include 'imports.html' %}
+
+        <link href="{% static 'css/profile.css' %}" rel="stylesheet">
+        <link href="{% static 'css/timeline.css' %}" rel="stylesheet">
+
+        <script src="{% static 'js/iscroll.js' %}"></script>
+        <script src="{% static 'js/profile.js' %}"></script>
+
+
+    </head>
+    <body>
+    
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <!-- This draws the logo-->
+        <div class="navbar-header">
+          <a class="navbar-brand" href="../../dash/">
+            <div class="logo"><span style="color: #eb2229">Side</span><span style="color: #a7a7a7">Walk</span></div></a>
+        </div>
+
+        <!-- These are the links-->
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="../../dash/">Dash</a></li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Quest<b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    <li><a href="../../post/">Post</a></li>
+                    <li><a href="../../search/">Search</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span style="font-size: 1.2em;" class="glyphicon glyphicon-cog"></span><b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                    <li><a href="../../profile/{{ user.username }}">Profile</a></li>
+                    <li><a href="../../account/">Settings</a></li>
+                    <li><a href="../../help/">Help</a></li>
+                    <li><a href="../../logout/">Log Out</a></li>
+                </ul>
+            </li>
+            <li>
+            <a href="#" id="pushy" ><span class="glyphicon glyphicon-comment" id="comments-icon"></span></a>
+            </li>
+        </ul>  
+      </div>
+    </nav>
+
+            <div id="panel">
+
+                <div class="section-panel" id="user-info-panel" >
+                    <div class="page-header" id="info-header">
+                        <h2>{{ quser.user.username }}</h2>
+                    </div>
+
+                        <div id = "left-info-container" class="media"> 
+                            <div class="user-icon-wrapper pull-left">
+                                {% thumbnail quser.icon "128x128" padding=True as im %}
+                                    <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" id="user-icon" class="media-object">
+                                {% endthumbnail %}
+                            </div>
+                            <div id="user-text" class="media-body">
+                                <p id="user-full-name">Hi, I'm {{ quser.user.get_full_name }} </p>
+                                <p id="user-description"> {{ quser.description }} </p>
+                         </div>
+                        </div>
+                        
+                        <div id="right-info-container">
+                            {% if original %}
+                                
+                            {% else %}
+                                {% if ally %}
+                                    <!-- <form id="accept-button-form" action="accept" method="post"> {% csrf_token %}
+                                        <button type="submit" class="btn btn-success btn-sm" id="accept-button" style="display: none;"> ACCEPT </button>
+                                    </form> -->
+                                    <form id="make-ally-form" action="ally" method="post"> {% csrf_token %}
+                                        <button type="submit" id="make-ally-button" class="btn btn-primary" style="display: none;">+ ALLY</button>
+                                    </form>
+                                    <form id="remove-ally-form" action="de-ally" method="post"> {% csrf_token %} 
+                                        <button type="submit" id="remove-ally-button" class="btn btn-warning">- ALLY</button>
+                                    </form>
+                                {% else %}
+                                    <form id="make-ally-form" action="ally" method="post"> {% csrf_token %}
+                                        <button type="submit" id="make-ally-button" class="btn btn-primary">+ ALLY</button>
+                                    </form>
+                                    <form id="remove-ally-form" action="de-ally" method="post"> {% csrf_token %} 
+                                        <button type="submit" id="remove-ally-button" class="btn btn-warning" style="display: none;">- ALLY</button>
+                                    </form>
+                                    
+                                {% endif %}
+                            {% endif %}
+                            <p id="user-stats"> Location: {{ quser.location }} 
+                            <br>Quests completed: {{ quser.completed_quests.count }}
+                            <br>Quests posted: {{ quser.posted_quests.count }} </p>
+                        </div>
+                </div>
+
+<!--  ________________________________________________________________ -->
+
+
+            <div id="user-content-panel">
+                    <div class="alert alert-success" style="display: none;" id="make-ally-success-alert">
+                        <strong> Success </strong> You successfully made an ally!
+                    </div>
+                    <div class="alert alert-success" style="display: none;" id="remove-ally-success-alert">
+                        <strong> Success </strong> You successfully removed an ally!
+                    </div>
+
+
+                <div id="timeline-tab" data-username="{{ quser.user.username }}">
+
+                    <a class="divider" id="timeline-divider"><span class="glyphicon glyphicon-chevron-up"></span><p>view profile<p></a>
+
+                    <div id="timeline">
+                        
+                    </div>
+                </div>
+                
+
+                <div id="profile-tab">
+                    
+                    {% if ally or original %}
+                    <a class="divider" id="profile-divider"><span class="glyphicon glyphicon-chevron-down"></span><p>view quest log<p></a>
+                    {% endif %}
+
+                    <div class="section-panel panel panel-default">
+                        <div class="section-header-box panel-heading" id="skills-header">
+                            <h2>Skills</h2>
+                        </div>
+                        <div id="skill-point-container" class="panel-body">
+                            {% for row in rows %}
+                            <div class="row" id="stat-row-{{ row }}">
+                                {% for col in cols %}
+                                <div class="col-xs-{{ colwidth }} stat-box media">
+                                    <span class="pull-left"><img class="stat-icon media-object" src="{% static 'images'%}/{{row|multiply:numcols|add:col|getval:stat_list|lower}}.png" alt="Sexy"></span>
+                                    <div class="stat-info media-body"><p class="stat-value"> {{ row|multiply:numcols|add:col|getval:stat_list }}: {{ row|multiply:numcols|add:col|getval:stats }} </p>
+                                    <p class="stat-flavor"> {{ row|multiply:numcols|add:col|getval:stat_flavor }} </p></div>
+                                </div> 
+                                {% endfor %}
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+
+                    <div class="section-panel panel panel-default">
+                        <div class="section-header-box panel-heading" id="allies-header">
+                            <h2>Allies</h2>
+                        </div>
+                        <div id="allies-container" class="panel-body">
+                            {% for ally in allies %}
+                            <div class="ally-icon-wrapper">
+                                <a href="../{{ ally.user.username }}">
+                                {% thumbnail ally.icon "128x128" padding=True as im %}
+                                    <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" class="ally-icon">
+                                    {{ ally.user.username }}
+                                {% endthumbnail %}
+                                </a>
+                            </div> 
+                            {% endfor %}
+                        </div>
+                    </div>
+
+
+                    <div class="section-panel panel panel-default" id="current-quests-panel">
+                        <div class="section-header-box panel-heading" id="current-quests-header">
+                            <h2>Current Quests</h2>
+                        </div>
+                        <div class="row thumbnail-viewer-container">
+                            <div class="col-xs-12">
+                                <div class="well">
+                                    <div class="carousel slide" data-interval="false" data-wrap="false" id="thumbnail-current-viewer">
+
+                                        <!-- Carousel Items -->
+                                        <div class="carousel-inner">
+                                            <div class="item active"> 
+                                                
+                                                <div class="row thumb-row">
+                                                    {% for count in 3|get_range %}
+                                                    {% if count|getval:current_quests %}
+                                                        <div class="col-xs-2 thumbnail-col quest-stats-container">
+                                                            <!-- column container -->
+                                                            <p id="quests-carousel-name" class="ellipsis"> <a href="../../quest/{{ count|getval:current_quests|getquestid }}-{{ count|getval:current_quests|getpostername }}"> {{ count|getval:current_quests|getquestname }} </a></p>
+                                                            <div class="quest-icon-wrapper">
+                                                                {% thumbnail count|getval:current_quests|getqicon "100x100" padding=True padding_color="#e3e3e3" as im %}
+                                                                    <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" id="quest-icon"> 
+                                                                {% endthumbnail %}
+                                                            </div>
+                                                            <!-- stats in the carousel -->
+                                                            <div id="skill-point-carousel-container">
+                                                                {% for row in rows %}
+                                                                <div class="row" id="stat-row-{{ row }}">
+                                                                    {% for col in cols %}
+                                                                    <div class="col-xs-{{ colwidth }} quest-stat-box">
+                                                                        <img class="stat-quest-icon" name="{{ row|multiply:numcols|add:col|getval:stat_list }}" src="
+                                                                        {% static 'images'%}/{{row|multiply:numcols|add:col|getval:stat_list|lower}}.png" alt="Sexy">
+                                                                        <p class="stat-quest-value">{{ row|multiply:numcols|add:col|stradd:count|getquestval:current_quests }}</p>
+                                                                    </div> 
+                                                                    {% endfor %}
+                                                                </div>
+                                                                {% endfor %}
+                                                            </div>
+                                                        </div>
+                                                    {% else %}
+                                                        <div class="col-xs-2 thumbnail-col quest-stats-container">
+                                                        </div>
+                                                    {% endif %}
+                                                    {% endfor %}
+                                                </div>
+
+                                            </div>
+                                            {% for upcount in inactive_current_rows|get_range %} 
+                                                <div class="item"> 
+                                                    <div class="row thumb-row">
+                                                        {% for count in 3|get_range %}
+                                                        {% if upcount|add:1|multiply:3|add:count|getval:current_quests %}
+                                                            <div class="col-xs-2 thumbnail-col quest-stats-container">
+                                                                <!-- column container -->
+                                                                <p id="quests-carousel-name" class="ellipsis"> <a href="../../quest/{{ count|stradd:upcount|getinactiveval:current_quests|getquestid }}-{{ count|stradd:upcount|getinactiveval:current_quests|getpostername }}">{{ count|stradd:upcount|getinactiveval:current_quests|getquestname }} </a></p>
+                                                                <div class="quest-icon-wrapper">
+                                                                    {% thumbnail count|stradd:upcount|getinactiveval:current_quests|getqicon "100x100" padding=True padding_color="#e3e3e3" as im %}
+                                                                        <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" id="quest-icon"> 
+                                                                    {% endthumbnail %}
+                                                                </div>
+                                                                <!-- stats in the carousel -->
+                                                                <div id="skill-point-carousel-container">
+                                                                    {% for row in rows %}
+                                                                    <div class="row" id="stat-row-{{ row }}">
+                                                                        {% for col in cols %}
+                                                                        <div class="col-xs-{{ colwidth }} quest-stat-box">
+                                                                            <img class="stat-quest-icon" name="{{ row|multiply:numcols|add:col|getval:stat_list }}" src="
+                                                                            {% static 'images'%}/{{row|multiply:numcols|add:col|getval:stat_list|lower}}.png" alt="Sexy">
+                                                                            <p class="stat-quest-value">{{ row|multiply:numcols|add:col|stradd:count|stradd:upcount|getflowerquestval:current_quests }} </p>
+                                                                        </div> 
+                                                                        {% endfor %}
+                                                                    </div>
+                                                                    {% endfor %}
+                                                                </div>
+                                                            </div>
+                                                        {% else %}
+                                                            <div class="col-xs-2 thumbnail-col quest-stats-container">
+                                                            </div>
+                                                        {% endif %}
+                                                        {% endfor %}
+                                                    </div>
+                                                </div>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                                        <a class="lefty" href="#thumbnail-current-viewer" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"</span></a>
+                                        <a class="righty" href="#thumbnail-current-viewer" data-slide="next"><span class="glyphicon glyphicon-chevron-right"</span></a>
+                    </div>
+
+                    
+                    <div class="section-panel panel panel-default" id="completed-quests-panel">
+                        <div class="section-header-box panel-heading" id="completed-quests-header">
+                            <h2> Completed Quests </h2>
+                        </div>
+                        <div class="row thumbnail-viewer-container">
+                            <div class="col-xs-12">
+                                <div class="well">
+                                    <div class="carousel slide" data-interval="false" data-wrap="false" id="thumbnail-completed-viewer">
+
+                                        <!-- Carousel Items -->
+                                        <div class="carousel-inner">
+                                            <div class="item active"> 
+                                                
+                                                <div class="row thumb-row">
+                                                    {% for count in 3|get_range %}
+                                                    {% if count|getval:completed_quests %}
+                                                        <div class="col-xs-2 thumbnail-col quest-stats-container">
+                                                            <!-- column container -->
+                                                            <p id="quests-carousel-name" class="ellipsis"> <a href="../../quest/{{ count|getval:completed_quests|getquestid }}-{{ count|getval:completed_quests|getpostername }}"> {{ count|getval:completed_quests|getquestname }} </a></p>
+                                                            <div class="quest-icon-wrapper">
+                                                                {% thumbnail count|getval:completed_quests|getqicon "100x100" padding=True padding_color="#e3e3e3" as im %}
+                                                                    <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" id="quest-icon"> 
+                                                                {% endthumbnail %}
+                                                            </div>
+                                                            <!-- stats in the carousel -->
+                                                            <div id="skill-point-carousel-container">
+                                                                {% for row in rows %}
+                                                                <div class="row" id="stat-row-{{ row }}">
+                                                                    {% for col in cols %}
+                                                                    <div class="col-xs-{{ colwidth }} quest-stat-box">
+                                                                        <img class="stat-quest-icon" name="{{ row|multiply:numcols|add:col|getval:stat_list }}" src="
+                                                                        {% static 'images'%}/{{row|multiply:numcols|add:col|getval:stat_list|lower}}.png" alt="Sexy">
+                                                                        <p class="stat-quest-value">{{ row|multiply:numcols|add:col|stradd:count|getquestval:completed_quests }}</p>
+                                                                    </div> 
+                                                                    {% endfor %}
+                                                                </div>
+                                                                {% endfor %}
+                                                            </div>
+                                                        </div>
+                                                    {% else %}
+                                                        <div class="col-xs-2 thumbnail-col quest-stats-container">
+                                                        </div>
+                                                    {% endif %}
+                                                    {% endfor %}
+                                                </div>
+
+                                            </div>
+                                            {% for upcount in inactive_completed_rows|get_range %} 
+                                                <div class="item"> 
+                                                    <div class="row thumb-row">
+                                                        {% for count in 3|get_range %}
+                                                        {% if upcount|add:1|multiply:3|add:count|getval:completed_quests %}
+                                                            <div class="col-xs-2 thumbnail-col quest-stats-container">
+                                                                <!-- column container -->
+                                                                <p id="quests-carousel-name" class="ellipsis"> <a href="../../quest/{{ count|stradd:upcount|getinactiveval:completed_quests|getquestid }}-{{ count|stradd:upcount|getinactiveval:completed_quests|getpostername }}">{{ count|stradd:upcount|getinactiveval:completed_quests|getquestname }} </a></p>
+                                                                <div class="quest-icon-wrapper">
+                                                                    {% thumbnail count|stradd:upcount|getinactiveval:completed_quests|getqicon "100x100" padding=True padding_color="#e3e3e3" as im %}
+                                                                        <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" id="quest-icon"> 
+                                                                    {% endthumbnail %}
+                                                                </div>
+                                                                <!-- stats in the carousel -->
+                                                                <div id="skill-point-carousel-container">
+                                                                    {% for row in rows %}
+                                                                    <div class="row" id="stat-row-{{ row }}">
+                                                                        {% for col in cols %}
+                                                                        <div class="col-xs-{{ colwidth }} quest-stat-box">
+                                                                            <img class="stat-quest-icon" name="{{ row|multiply:numcols|add:col|getval:stat_list }}" src="
+                                                                            {% static 'images'%}/{{row|multiply:numcols|add:col|getval:stat_list|lower}}.png" alt="Sexy">
+                                                                            <p class="stat-quest-value">{{ row|multiply:numcols|add:col|stradd:count|stradd:upcount|getflowerquestval:completed_quests }} </p>
+                                                                        </div> 
+                                                                        {% endfor %}
+                                                                    </div>
+                                                                    {% endfor %}
+                                                                </div>
+                                                            </div>
+                                                        {% else %}
+                                                            <div class="col-xs-2 thumbnail-col quest-stats-container">
+                                                            </div>
+                                                        {% endif %}
+                                                        {% endfor %}
+                                                    </div>
+                                                </div>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                                        <a class="lefty" href="#thumbnail-completed-viewer" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"</span></a>
+                                        <a class="righty" href="#thumbnail-completed-viewer" data-slide="next"><span class="glyphicon glyphicon-chevron-right"</span></a>
+                    </div>
+
+                    <div class="section-panel panel panel-default" id="posted-quests-panel">
+                        <div class="section-header-box panel-heading" id="posted-quests-header">
+                            <h2> Posted Quests </h2>
+                        </div>
+                        <div class="row thumbnail-viewer-container">
+                            <div class="col-xs-12">
+                                <div class="well">
+                                    <div class="carousel slide" data-interval="false" data-wrap="false" id="thumbnail-posted-viewer">
+
+                                        <!-- Carousel Items -->
+                                        <div class="carousel-inner">
+                                            <div class="item active"> 
+                                                
+                                                <div class="row thumb-row">
+                                                    {% for count in 3|get_range %}
+                                                    {% if count|getval:posted_quests %}
+                                                        <div class="col-xs-2 thumbnail-col quest-stats-container">
+                                                            <!-- column container -->
+                                                            <p id="quests-carousel-name" class="ellipsis"> <a href="../../quest/{{ count|getval:posted_quests|getquestid }}-{{ count|getval:posted_quests|getpostername }}"> {{ count|getval:posted_quests|getquestname }} </a></p>
+                                                            <div class="quest-icon-wrapper">
+                                                                {% thumbnail count|getval:posted_quests|getqicon "100x100" padding=True padding_color="#e3e3e3" as im %}
+                                                                    <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" id="quest-icon"> 
+                                                                {% endthumbnail %}
+                                                            </div>
+                                                            <!-- stats in the carousel -->
+                                                            <div id="skill-point-carousel-container">
+                                                                {% for row in rows %}
+                                                                <div class="row" id="stat-row-{{ row }}">
+                                                                    {% for col in cols %}
+                                                                    <div class="col-xs-{{ colwidth }} quest-stat-box">
+                                                                        <img class="stat-quest-icon" name="{{ row|multiply:numcols|add:col|getval:stat_list }}" src="
+                                                                        {% static 'images'%}/{{row|multiply:numcols|add:col|getval:stat_list|lower}}.png" alt="Sexy">
+                                                                        <p class="stat-quest-value">{{ row|multiply:numcols|add:col|stradd:count|getquestval:posted_quests }}</p>
+                                                                    </div> 
+                                                                    {% endfor %}
+                                                                </div>
+                                                                {% endfor %}
+                                                            </div>
+                                                        </div>
+                                                    {% else %}
+                                                        <div class="col-xs-2 thumbnail-col quest-stats-container">
+                                                        </div>
+                                                    {% endif %}
+                                                    {% endfor %}
+                                                </div>
+
+                                            </div>
+                                            {% for upcount in inactive_posted_rows|get_range %} 
+                                                <div class="item"> 
+                                                    <div class="row thumb-row">
+                                                        {% for count in 3|get_range %}
+                                                        {% if upcount|add:1|multiply:3|add:count|getval:posted_quests %}
+                                                            <div class="col-xs-2 thumbnail-col quest-stats-container">
+                                                                <!-- column container -->
+                                                                <p id="quests-carousel-name" class="ellipsis"> <a href="../../quest/{{ count|stradd:upcount|getinactiveval:posted_quests|getquestid }}-{{ count|stradd:upcount|getinactiveval:posted_quests|getpostername }}">{{ count|stradd:upcount|getinactiveval:posted_quests|getquestname }} </a></p>
+                                                                <div class="quest-icon-wrapper">
+                                                                    {% thumbnail count|stradd:upcount|getinactiveval:posted_quests|getqicon "100x100" padding=True padding_color="#e3e3e3" as im %}
+                                                                        <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" id="quest-icon"> 
+                                                                    {% endthumbnail %}
+                                                                </div>
+                                                                <!-- stats in the carousel -->
+                                                                <div id="skill-point-carousel-container">
+                                                                    {% for row in rows %}
+                                                                    <div class="row" id="stat-row-{{ row }}">
+                                                                        {% for col in cols %}
+                                                                        <div class="col-xs-{{ colwidth }} quest-stat-box">
+                                                                            <img class="stat-quest-icon" name="{{ row|multiply:numcols|add:col|getval:stat_list }}" src="
+                                                                            {% static 'images'%}/{{row|multiply:numcols|add:col|getval:stat_list|lower}}.png" alt="Sexy">
+                                                                            <p class="stat-quest-value">{{ row|multiply:numcols|add:col|stradd:count|stradd:upcount|getflowerquestval:posted_quests }} </p>
+                                                                        </div> 
+                                                                        {% endfor %}
+                                                                    </div>
+                                                                    {% endfor %}
+                                                                </div>
+                                                            </div>
+                                                        {% else %}
+                                                            <div class="col-xs-2 thumbnail-col quest-stats-container">
+                                                            </div>
+                                                        {% endif %}
+                                                        {% endfor %}
+                                                    </div>
+                                                </div>
+                                            {% endfor %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                                        <a class="lefty" href="#thumbnail-posted-viewer" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"</span></a>
+                                        <a class="righty" href="#thumbnail-posted-viewer" data-slide="next"><span class="glyphicon glyphicon-chevron-right"</span></a>
+                    </div> <!-- posted quests -->
+                </div> <!-- info tab -->
+
+
+
+
+
+            </div> <!-- user content panel -->
+
+        </div> <!-- panel -->
+
+        {% include 'comments_panel.html' %}
+        {% if timeline %}
+        <p style="display:none;" id="timeline-start-indicator"> timeline </p>
+        {% else %}
+        <p style="display:none;" id="timeline-start-indicator"> false </p>
+        {% endif %}
+        {% if quest_id %}
+        <p style="display:none;" id="timeline-start-questid"> {{ quest_id }} </p>
+        {% else %}
+        <p style="display:none;" id="timeline-start-questid"> false </p>
+        {% endif %}
+    </body>
+</html>

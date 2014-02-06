@@ -1,0 +1,11 @@
+<tr><td>
+	<div class="comment-wrapper media">
+		<div class= "comment-icon-wrapper pull-left">
+                <img src="{{ comment.poster.icon.url }}" class="comment-icon" class="media-object">
+		</div>
+		<div class="media-body comment-text">
+			<a href="../{{ comment.poster.user.username }}"> <span class="comment-poster-name"> {{ comment.poster.user.username }} </span> </a>
+	 		<p> {{ comment.comment }}</p>
+	 	</div>
+	 </div>
+</td></tr>

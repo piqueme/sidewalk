@@ -1,0 +1,15 @@
+{% load thumbnail %}
+{% load postingstuff %}
+<tbody>
+{% for comment in comments %}
+<tr class="comment-row {{ comment.quest.completed_quest.id }}">
+<td><div class="commenter-icon-wrapper {{ comment.quest.completed_quest.id }}">
+    {% thumbnail comment.poster.icon "200x200" padding=True as im %}
+    <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" class="comments-icon img-thumbnail {{ comment.quest.completed_quest.id }}"> 
+    {% endthumbnail %} 
+</div></td>
+<td><p class="comment-notice {{ comment.quest.completed_quest.id }}"> {{ comment.poster.user.first_name }} {{comment.poster.user.last_name }} commented on your Adventurer's Log: "{{ comment.comment|trail_trim }}" </p>
+</td>    
+</tr>
+</tbody>
+{% endfor %}

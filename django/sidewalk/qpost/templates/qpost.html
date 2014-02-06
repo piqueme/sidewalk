@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+{% load postingstuff %} 
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    {% load static %}
+    <title>Sidewalk - Post a Quest</title>
+
+
+    {% include 'imports.html' %}
+    <link href="{% static 'css/post.css' %}" rel="stylesheet">
+    <script type="text/javascript"
+        src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyCC_6PTJxGDdXeEKNrVXzo_P997TyzjVfY&sensor=false">
+    </script>
+    <script src="{% static 'js/post.js' %}"></script>
+
+  </head>
+
+  <body>
+
+    {% include "navbar.html" %}
+
+<!-- _____________________________________________________________ -->
+
+<div id="panel-header">
+    <div class="page-header" >
+        <h3>Post a Quest <small> I can show you the world</small></h3>
+    </div>
+</div>
+    <div id= "panel">
+
+        <div id="content-panel">
+
+        <div class = "col-xs-9" id="insidepanel">
+            <div class="panel panel-default" id="instructions-panel">
+                <div id="instructions" class="panel-body">
+                    <p id="instructions"> <strong> Cowabunga! </strong> You've come to post a quest! Thank you so much for providing your knowledge and experience to our databases. As they say, one small step for SideWalk, one giganto-leap for mankind! </p>
+                </div>
+            </div>
+                <form action="../post/submit" enctype = "multipart/form-data" method="POST" id="post-form"> {% csrf_token %}
+                    {% for field in form %}
+                        {% if field.html_name|prefix != 'stat' %}
+                            <div class="panel panel-default">
+                                
+                                <div class="panel-heading">
+                                            <h2>&raquo; {{ field.label }}</h2>
+                                </div>
+                                    <div class="field-wrapper panel-body">
+                                        {% if forloop.counter == 1 %}
+                                        <p class="field-text"> What's in a name? Everything! This is where you put the name of your quest. Please make sure it's descriptive, since our search functions believe the quest name is <strong> very </strong> important, and use it to show your posted quest to our other users! </p>
+                                        {% elif forloop.counter == 2 %}
+                                        <p class="field-text">  Some famous guy once said that a picture is worth a thousand words, but we at SideWalk have calculated the average image to be worth around <strong> 2,852,196 </strong> words through incredibly rigorous testing. Upload a striking image to describe your quest and capture the attention of other adventurers! </p> 
+                                        {% elif forloop.counter == 3 %}
+                                        <p class="field-text"> This is where you start spilling the beans! Describe your site! What is the essence of your quest? Why is your quest? Who are the main actors? All very, very important questions whose answers you should try your very best to communicate to other users. </p> 
+                                        {% endif %}
+                                        {{ field }}
+                                    </div>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                    <div class="panel panel-default">
+                        <div class="panel-heading"><h2>&raquo; Add Challenges</h2></div>
+                        <div class="field-wrapper panel-body">
+
+                            <div class="place-tooltip" data-toggle="tooltip">
+                                <div class="" id="challenge-panel-container">
+                                    <div class="panel-body" id="challenges-panel">
+                                        <p class="field-text" id="challenge-field-text"> The immediate elements that comprise this very special quest - <span style="font-style:italic;"> challenges </span>. Each challenge should be a specific tasks required in the quest, and should be complete with its own location so that users know where to go. You can add up to 10 for maximum challenginess and flavor! </p>
+                                        <div id="challenges-container">
+                                            <div class="row challenge-row" id="challenge-row-1">
+                                                <div class="col-xs-1">
+                                                    <p class="challenge-id-text" id="challenge-id-1">1:</p>
+                                                </div>
+                                                <div class="col-xs-5">
+                                                    <input type="text" class="form-control challenge-desc" maxlength="60" name="challenge-1" id="challenge-1" placeholder="Description"> </input>
+                                                </div>
+                                                <div class="col-xs-5">
+                                                    
+                                                    <input type="text" class="form-control location-desc" maxlength="60" name="location-1" id="location-1" placeholder="Location"> </input>
+                                                </div>
+                                                <div class="col-xs-1" id="challenge-1-filler"></div>
+                                            </div>
+                                        </div>
+                                        <div class="row" id="add-challenge-row">
+                                            <div class="col-xs-12">
+                                                <button type="button" class="btn btn-default btn-block" id="add-challenge-button"> + </button>
+                                            </div> 
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> <!-- panel body field wrapper --> 
+                    </div> <!-- panel default -->
+                        
+                    <div class="panel panel-default">
+                        <div class="field-label panel-heading"><h2>&raquo; Skill Rewards</h2></div>
+                        <div class="field-wrapper panel-body" id="stats-wrapper">
+                                        <p class="field-text"> This is where you choose how to distribute the skill points for your quest! As you can see, we've already determined the fundamental components of all activities in city life. All you have to is tell us how much of each of those is in your quest! </p> 
+                            <div class="place-tooltip" data-toggle="tooltip">
+                                <div class="field-label" id="skill-point-counter"> 5 points to distribute</div>
+                            </div>
+                            <div class="" id="stats-panel">
+                                <div class="panel-body"><table class=table>
+                                    {% for field in form %}
+                                        {% if field.html_name|prefix == 'stat' %}
+                                            <div class="place-tooltip-stats" data-toggle="tooltip">
+                                                <div class="skill-label">{{ field.label }}</div>: {{ field }}
+                                            </div>
+                                        {% endif %}
+                                    {% endfor %}
+                                </table></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="alert alert-danger" id="post-ajax-error">
+                        <strong> Gee willickers! </strong> There was a connection problem!
+                    </div>
+            
+                    <div class="field-wrapper"><p><button type="submit" name="qpost" value="Post Quest" class="btn btn-success btn-lg" id="post-button">Post Quest</button></p>
+                    </div>
+                </form> 
+
+
+            </div> <!-- insidepanel-->
+</div> <!-- content panel -->
+
+
+</div> <!-- main panel -->
+
+    {% include 'comments_panel.html' %}
+
+  </body>
+</html>

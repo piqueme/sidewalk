@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  	<meta charset="utf-8">
+	<title>Sidewalk Testing Things</title>
+	<link href="css/jquery-ui.custom.css" rel="stylesheet">
+	<link href="css/base.css" rel="stylesheet">
+  <link href='http://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic|Monda|Montserrat:400,700' rel='stylesheet' type='text/css'>
+
+	<script src="js/jquery-1.9.1.js"></script>
+	<script src="js/jquery-ui-1.10.3.custom.js"></script>
+
+  <script>
+  $(function() {
+    $( "input[type=submit], a, button" )
+      .button()
+      .click(function( event ) {
+        event.preventDefault();
+      });
+  });
+
+
+
+  </script>
+
+  </head>
+
+  <div id="navbar">
+      <div class="logo"><span style="color: #a7a7a7">Side</span><span style="color: #1473c4">Walk</span></div>
+        <div id="navlinks">
+          
+        </div>
+  </div>
+  <body>
+
+  	<div id="panel">
+
+      <div id="banner">
+      <h2><span style="color:#ffffff">
+        Your very own urban adventure is about to unfold.
+      </span></h3>
+      </div>
+
+        <div id="panel-signup">
+          <h3><span style="color: #c37637">Sign Up</span></h3>
+          <form>
+            <input type= "text" name= "username" placeholder="Username"></input><br>
+            <input type= "text" name= "password" placeholder="Password"></input>
+            <input type= "text" name= "confirm-password" placeholder="Confirm Password"></input>
+            <input type= "text" name= "email" placeholder="Email Address"></input>
+            <input type= "text" name= "confirm-email" placeholder="Confirm Email"></input><br>
+            <input type= "checkbox" name= "agree"> I agree to the Terms and Conditions</input><br>
+            <input type= "submit" value= "Sign Up"></input>
+
+          </form>
+        </div>
+
+        <div id="panel-doodle">
+          <img src="images/home_doodle.png">
+        </div>
+    </div>
+  </body>
+</html>

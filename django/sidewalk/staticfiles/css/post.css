@@ -1,0 +1,151 @@
+
+#panel {
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 20px;
+
+}
+
+.alert {
+	display: none;
+}
+
+#panel-header {
+	margin-top: 100px;
+	margin-left: 5%;
+}
+
+#panel-heading {
+}
+
+#instructions {
+	padding: 20px;
+        font-size: 1.2em;
+}
+
+.tooltip {
+	font-size: 1em;
+}
+
+#instructions {
+	padding-left: 10px;
+}
+
+.field-wrapper {
+	width: 100%;
+	text-align: center;
+}
+
+#post-form {
+	width: 100%;
+	margin-top: 20px;
+	
+}
+
+#name, #description, .location, #icon, #challenge-panel-container {
+	margin: 10px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.place-tooltip {
+	display: inline-block;
+	text-align: center;
+	width: 100%;
+}
+
+#name {
+	width: 400px;
+	margin-bottom: 20px;
+}
+
+#description {
+	height: 100px;
+	width: 80%;
+	margin-bottom: 50px;
+	display: block;
+	clear: left;
+}
+
+#icon {
+	margin-bottom: 20px;
+	width: 475px;
+	clear: right;
+}
+
+
+.stat {
+	width: 100px;
+	margin: 10px;
+	display: inline;
+}
+
+.field-text {
+    text-align: left;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+#challenge-field-text {
+    margin-top: 0px;
+}
+
+#skill-point-counter {
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+.skill-label {
+	display: inline-block;
+}
+
+.place-tooltip-stats {
+	display: inline;
+}
+
+#stats-wrapper {
+	width: 700px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+
+#stats-panel {
+	padding-left: 20px;
+	width: 650px;
+	margin-top: 10px;
+
+}
+
+.location {
+
+}
+
+
+.challenge-row {
+	height: 50px;
+}
+
+.challenge-id-text {
+	text-align: right;
+	font-size: 1.2em;
+}
+
+#challenge-panel-container
+{
+}
+
+#challenges-table {
+	
+}
+
+#challenge-1-filler {
+	width: 45px;
+	height: 21px;
+}
+
+#post-button {
+
+}

@@ -1,0 +1,92 @@
+{% load postingstuff %}
+{% load thumbnail %} 
+{% load static %}
+
+
+<div class="panel panel-default">
+		<div class="panel-body" id= "photo-panel-body">
+			
+	<a href="../../quest/{{ quest.id }}-{{ quest.user_posted_name }}">
+		<h2 id="photo-panel-title">{{ quest.name }}</h2>
+	</a>
+			<div id="photo-row">
+
+				<div id="photo">
+					{% for cert in challenge_certificates %}
+						<div class="challenge-photo" id="challenge-photo-{{ forloop.counter }}">
+							{% thumbnail cert.ver_photo "380x280" padding=True as im %}
+	                        	<img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" class="challenge-image" class="media-object">
+	                    	{% endthumbnail %}
+	                	</div>
+	                {% endfor %}
+					<div id="photo-filler">Select a challenge to view the photo of triumph!</div>
+				</div>
+
+				<div id="timeline-quest-info">
+					Challenges: 
+					<ul>
+					
+					{% for cert in challenge_certificates %}
+						<li class="challenge-text" id="challenge-cert-{{ forloop.counter }}">
+							<b>{{ cert.challenge }}</b> at {{ cert.challenge.location }}: "{{ cert.ver_notes }}"
+						</li>
+					{% endfor %}
+					</ul>
+				</div>
+			</div>
+
+			<div id="comment-panel">
+
+				<form action="comment" id="comment-form">
+					<textarea class="form-control" type="textarea" placeholder="Comment on this triumph" id="comment-textarea" data-questid="{{ quest.id }}" data-usernameposter="{{ user.username }}" rows="3"></textarea>
+					<input class="form-control" type="submit" id="comment-submit"></input>
+				</form>
+
+				<table id="comments-table" class="table table-striped">
+					{% for comment in comments_sorted %}
+						<tr><td>
+							<div class="comment-wrapper media">
+								<div class= "comment-icon-wrapper pull-left">
+			                            <img src="{{ comment.poster.icon.url }}" class="comment-icon" class="media-object">
+								</div>
+								<div class="media-body comment-text">
+									<a href="../{{ comment.poster.user.username }}"> <span class="comment-poster-name"> {{ comment.poster.user.username }} </span> </a>
+							 		<p> {{ comment.comment }}</p>
+							 	</div>
+							 </div>
+						</td></tr>
+					{% endfor %}
+
+<!-- remove this block (hardcoded comment filler) -->
+					<!-- <tr><td>
+						<div class="comment-wrapper media">
+							<div class= "comment-icon-wrapper pull-left">
+		                            <img src="{% static 'images/test.jpg' %}" class="comment-icon" class="media-object">
+							</div>
+							<div class="media-body comment-text">
+								<span class="comment-poster-name">username</span>
+						 		<p> comment blah blah comment </p>
+						 	</div>
+						 </div>
+					</td></tr>
+
+					<tr><td>
+						<div class="comment-wrapper media">
+							<div class= "comment-icon-wrapper pull-left">
+		                            <img src="{% static 'images/test.jpg' %}" class="comment-icon" class="media-object">
+							</div>
+							<div class="media-body comment-text">
+								<span class="comment-poster-name">username</span>
+						 		<p> comment blah blah comment </p>
+						 	</div>
+						 </div>
+					</td></tr> -->
+<!-- remove this block --> 
+
+
+				</table>
+			</div> <!-- comment panel -->
+
+
+		</div>
+	</div>

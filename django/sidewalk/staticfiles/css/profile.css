@@ -1,0 +1,322 @@
+#timeline-wrapper
+{
+    /*z-index: 4;
+    overflow: auto;
+    height = 900px;
+    */
+}
+
+#info-panel {
+	position: fixed;
+	top: 7.5em;
+}
+
+.section-panel {
+    width: 100%px;
+    clear: both;
+    display: block;
+}
+
+#current-quests-panel {
+
+}
+
+#panel {
+    padding: 0px;
+}
+
+.page-header {
+    border-bottom: 0px;
+    padding: 0;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 50px;
+    text-align: center;
+}
+
+#user-content-panel {
+    padding-bottom: 100px;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+#completed-quests-panel {
+}
+
+#posted-quests-panel {
+
+}
+
+#user-info-panel {
+    padding-left: 120px;
+    padding-right: 120px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+    color: #626262;
+    height: 350px;
+    width: 100%;
+}
+
+.thumb-row {
+
+}
+
+#user-icon {
+    width: 120px;
+    height: 120px;
+    vertical-align: baseline;
+}
+
+.user-icon-wrapper {
+    display: inline-block;
+    width: 120px;
+    height: 120px;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+
+#left-info-container {
+    float: left;
+    display: inline-block;
+}
+
+#right-info-container {
+    float: right;
+    display: inline-block;
+}
+
+#ally-button {
+    margin: 10px;
+}
+#user-text {
+    display: inline-block;
+    padding-left: 20px;
+}
+
+#username {
+    font-family: "Montserrat", sans-serif;
+    font-size: 2em;
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+#user-full-name {
+    font-family: "Montserrat", sans-serif;
+    color: #5c5c5c;
+    font-size: 2em;
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+#user-description {
+    font-family: "Montserrat", sans-serif;
+    color: #b5b5b5;
+    max-width: 400px;
+}
+
+
+#user-stats {
+    margin-top: 10px;
+    color: #5c5c5c;
+}
+
+
+#skill-point-container {
+    overflow: hidden;
+    margin-left: 10px;
+    padding: 30px;
+}
+
+.stat-box {
+    height: 80px;
+    padding: 10px;
+    clear: none;
+}
+
+.stat-icon {
+    margin-top: 6px;
+    vertical-align: top;
+    height: 50px;
+    width: 50px;
+    display: inline-block;
+}
+
+
+.stat-info {
+    width: 200px;
+    display: inline-block;
+    overflow: hidden;
+}
+
+.stat-value {
+    color: #626262 !important;
+    font-family: "Montserrat", sans-serif;
+    display: inline-block;
+    font-weight: bold;
+    font-size: 1.2em;
+    margin-bottom: 5px;
+}
+
+.stat-flavor {
+    color: #b5b5b5 !important;
+    font-size: .9em;
+    
+
+}
+
+#allies-container {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.ally-icon
+{
+    width: 100px;
+    height: 100px;
+    vertical-align: top;
+    display: inline;
+    
+}
+
+.ally-icon-wrapper {
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+    border-radius: 5px;
+    overflow: hidden;
+    vertical-align: top;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #e3e3e3;
+}
+
+
+
+/*_______________________________________________________________*/
+
+
+.thumbnail-viewer-container
+{
+    width: 1000px;
+    padding-left: 30px;
+    padding-right: 30px;
+    display: inline-block;
+    margin-left: auto;
+    margin-top: 10px;
+}
+
+.carousel-control
+{
+    padding-top: 10%;
+    width: 5%;
+}
+
+.carousel.slide {
+}
+
+.well {
+    width: 910px;
+    background-color: #e3e3e3;  
+    height: 190px;
+    margin-top: 10px;
+}
+
+.carousel-inner {
+    height: 170px;
+}
+
+.col-xs-2.thumbnail-col
+{
+    width: 300px;
+    height: 160px;
+}
+
+.stat-quest-icon {
+    height: 20px;
+    width: 20px;
+    margin-right: 2px;
+    display: inline-block;
+    vertical-align: middle;
+
+}
+
+.quest-stat-box {
+    height: 20px;
+    width: 50px;
+    margin: 3px;
+    padding: 0;
+    clear: none;
+}
+
+.stat-quest-value {
+    display: inline-block;
+    font-size: 1.0em;
+    color: #5c5c5c;
+}
+
+.stat-quest-info {
+    padding: 5px;
+    display: inline-block;
+}
+
+.quest-icon, .quest-completed-icon
+{
+    width: 100px;
+    height: 100px;
+    vertical-align: top;
+    display: inline;
+    
+}
+
+.quest-icon-wrapper {
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+    border-radius: 5px;
+    overflow: hidden;
+    vertical-align: top;
+}
+
+
+#skill-point-carousel-container
+{
+    width: 150px;
+    height: 120px;
+    margin-left: 10px;
+    padding: 5px;
+    display: inline-block;
+
+}
+
+#quests-carousel-name, #quests-carousel-name>a {
+    font-family: "Montserrat", sans-serif;
+    font-size: 1.2em;
+    color: #5c5c5c !important;
+    text-align: center;
+    width: 270px;
+    height: 25px;
+}
+
+.lefty {
+    float: left;
+    vertical-align: middle;
+    margin-top: 90px;
+    margin-left: 20px;
+}
+
+.righty {
+    float: right;
+    vertical-align: middle;
+    margin-top: 90px;
+    margin-right: 20px;
+}
+
+#info-container {
+    clear: both;
+}
+
+.alert {
+    display: block;
+}

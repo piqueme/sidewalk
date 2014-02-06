@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+{% load postingstuff %}
+{% load static %}
+{% load thumbnail %}
+{% if first %}
+<tbody>
+<tr>
+    <th></th>
+    <th>Quest Name</th>
+    <th>Poster</th>
+    <th>Skill Rewards</th>
+    <th>Location</th>
+    <th>Rating</th>
+</tr>
+{% endif %}
+{% for quest in quests %}
+<tr>
+    <td><a href='#'><div class="quest-icon-wrapper">
+        {% thumbnail quest.icon "200x200" padding=True as im %}
+            <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" class="quest-icon"> 
+        {% endthumbnail %}
+    </div></a></td>
+    <td><a href="../quest/{{ quest.id }}-{{ quest.user_posted_name}}"><span class="quest-name">{{ quest.name }}</span></a></td>
+    <td><a href="../profile/{{ quest.user_posted_name }}">{{ quest.user_posted_name }}</a></td>
+    <td><div id="skill-point-container">
+        {% for row in rows %}
+        <div class="row" id="stat-row-{{ row }}">
+            {% for col in cols %}
+            <div class="col-xs-{{ colwidth }} stat-box">
+                <img class="stat-icon" name="{{ row|multiply:numcols|add:col|getval:stat_list }}" src="
+                {% static 'images'%}/{{row|multiply:numcols|add:col|getval:stat_list|lower}}.png" alt="Sexy">
+                <p class="stat-value"> {{ row|multiply:numcols|add:col|getqueststat:quest }} </p>
+            </div> 
+            {% endfor %}
+        </div>
+        {% endfor %}
+    </div></td>
+    <td>
+        <ul> {% for challenge in quest.challenge_set.all %}
+            <li>{{ challenge.location }}</li>
+        {% endfor %}</ul>
+    </td>
+    <td>{{ quest.rating }}</td>
+</tr>
+{% endfor %}
+{% if first %}
+</tbody>
+{% endif %}

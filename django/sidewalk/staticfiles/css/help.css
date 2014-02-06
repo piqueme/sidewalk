@@ -1,0 +1,40 @@
+
+#help-panel {
+	padding-bottom: 100px;
+	padding-left: 50px;
+	padding-right: 50px;
+	padding-top: 50px;
+	width: 100%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#panel {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+}
+
+#panel-header {
+    margin-top: 100px;
+    margin-left: 5%;
+}
+
+#image-row {
+	text-align: center;
+	width: 100%;
+	margin: 20px;
+}
+
+img {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 30px;
+	margin-bottom: 10px;
+}
+
+p {
+	margin-top: 20px;
+	margin-bottom: 20px;
+}

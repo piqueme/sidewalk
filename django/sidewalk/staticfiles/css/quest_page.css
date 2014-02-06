@@ -1,0 +1,272 @@
+h2 {
+    font-size: 3em;
+}
+
+button {
+    margin: 5px;
+}
+#info-header {
+   margin-top: 0px;
+   margin-bottom: 0px; 
+}
+
+#quest-header
+{
+    margin-bottom: 60px;
+}
+
+.section-panel {
+    width: 100%;
+    clear: both;
+    display: block;
+}
+
+#panel {
+    padding: 0px;
+}
+
+#quest-content-panel {
+    padding-bottom: 100px;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+
+
+#quest-info-panel {
+    padding-left: 120px;
+    padding-right: 120px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+    color: #626262;
+    height: 300px;
+    width: 100%;
+}
+
+#skills-panel {
+}
+
+.page-header {
+    border-bottom: 0px;
+    padding: 0;
+}
+
+.section-header-box {
+    background-color: #626262;
+    z-index: 3;
+}
+
+.section-header {
+    
+}
+
+#quest-text {
+    display: inline-block;
+    vertical-align: top;
+    padding-left: 20px;
+}
+
+#quest-icon {
+    width: 120px;
+    height: 120px;
+    vertical-align: baseline;
+}
+
+.quest-icon-wrapper {
+    display: inline-block;
+    width: 120px;
+    height: 120px;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+#quest-name {
+    font-family: "Montserrat", sans-serif;
+    color: #5c5c5c;
+    font-size: 2em;
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+#quest-info-left {
+    float: left;
+    display: inline-block;
+}
+
+#quest-info-right {
+    float: right;
+    display: inline-block;
+}
+
+#quest-rating {
+
+    height: 30px;
+    width: 200px;
+    margin-bottom: 10px;
+}
+
+#star {
+    height: 25px;
+    width: 25px;
+}
+
+#quest-poster, #quest-city {
+    font-family: "Montserrat", sans-serif;
+    color: #5c5c5c;
+}
+
+#quest-desc {
+    font-family: "Montserrat", sans-serif;
+    color: #b5b5b5;
+    max-width: 400px;
+
+}
+
+#completed-tag {
+    font-size: 2em;
+    color: #535cc2;
+}
+
+#complete-button {
+}
+
+#forfeit-button {
+}
+
+#skill-point-container {
+    overflow: hidden;
+    margin-left: 10px;
+    padding: 30px;
+}
+
+.stat-box {
+    height: 80px;
+    padding: 10px;
+    clear: none;
+}
+
+.stat-icon {
+    margin-top: 6px;
+    vertical-align: top;
+    height: 50px;
+    width: 50px;
+    display: inline-block;
+}
+
+
+.stat-info {
+    width: 200px;
+    display: inline-block;
+    overflow: hidden;
+    margin-left: 10px;
+}
+
+.stat-value {
+    color: #626262 !important;
+    font-family: "Montserrat", sans-serif;
+    display: inline-block;
+    font-weight: bold;
+    font-size: 1.2em;
+    margin-bottom: 5px;
+}
+
+.stat-flavor {
+    color: #b5b5b5 !important;
+    font-size: .9em;
+    
+
+}
+
+#challenges-panel {
+
+}
+
+#challenge-container {
+    padding: 30px;
+}
+
+.challenge-id-text {
+    text-align: left;
+    vertical-align: middle;
+}
+
+.challenge-desc {
+
+}
+
+.challenge-row{
+
+}
+
+.location-desc {
+
+}
+
+
+.thumbnail-viewer-container {
+    width: 1000px;
+    padding-left: 30px;
+    padding-right: 30px;
+    display: inline-block;
+    margin-left: auto;
+    margin-top: 10px;
+}
+
+.carousel-control {
+    padding-top: 10%;
+    width: 5%;
+}
+
+.well {
+    width: 910px;
+    background-color: #e3e3e3;  
+    height: 140px;
+}
+
+.carousel-inner {
+    height: 100px;
+}
+
+/*.thumb-row
+{
+    height: 10.5em;
+}
+
+.slide
+{
+    height: 10.5em;
+}
+
+.carousel-inner
+{
+    height: 9.5em;
+}
+
+.thumbnail-col
+{
+    height: 9.5em;
+}*/
+
+.lefty {
+    float: left;
+    vertical-align: middle;
+    margin-top: 80px;
+    margin-left: 20px;
+}
+
+.righty {
+    float: right;
+    vertical-align: middle;
+    margin-top: 80px;
+    margin-right: 20px;
+}
+
+.img-responsive
+{
+    height: 7em;
+    width: 7em;
+    display:block;
+    margin-left: auto;
+    margin-right: auto;
+}
+

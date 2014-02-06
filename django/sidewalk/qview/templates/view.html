@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+{% load postingstuff %}
+{% load thumbnail %}
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    {% load static %}
+    <title>Sidewalk - Quest Search</title>
+
+
+    <link href="{% static 'css/jquery-ui.custom.css'%}" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic|Monda|Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
+    <link href="{% static 'css/base.css' %}" rel="stylesheet">
+    <link href="{% static 'css/view.css' %}" rel="stylesheet">
+
+    <script src="{% static 'js/jquery-1.9.1.js' %}"></script>
+    <script src="{% static 'js/jquery-ui-1.10.3.custom.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/view.js' %}"></script>
+
+</head>
+
+<body>
+
+    {% include "navbar.html" %}
+      
+    <div id= "panel">
+        <div class="page-header">
+            <h2>Quest Manage<small> Make questing efficient and effective </small></h2>
+        </div>
+
+        <div id="search-table">
+            <table class="table table-hover" id="searchtable">
+                <tr>
+                    <form class="form-group" id="search-form" method="post"> {% csrf_token %}
+                        <label for="keywords"></label>
+                        <input id="keywords" name="keywords" maxlength="60" type="text" class="form-control search-form" placeholder="Search by keyword"></input>
+                        <button type="submit" class="btn btn-default" id="search-button"><span class="glyphicon glyphicon-search"></span></button>
+                    </form>
+                </tr>
+                <tr>
+                    <th></th>
+                    <th>Quest Name</th>
+                    <th>Skill Rewards</th>
+                    <th>Location</th>
+                </tr>
+                {% for quest in current_quests %}
+                <tr>
+                    <td><a href='#'><div class="quest-icon-wrapper">
+                        {% thumbnail quest.icon "200x200" padding=True as im %}
+                        <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" class="quest-icon"> 
+                        {% endthumbnail %}
+                    </div></a>
+                    </td>
+                    <td><a href="../quest/{{ quest.id }}-{{ quest.user_posted_name}}"><span class="quest-name">{{ quest.name }}</span></a>
+                    </td>
+                    <td><div id="skill-point-container">
+                        {% for row in rows %}
+                        <div class="row" id="stat-row-{{ row }}">
+                            {% for col in cols %}
+                            <div class="col-xs-{{ colwidth }} stat-box">
+                                <img class="stat-icon" name="{{ row|multiply:numcols|add:col|getval:stat_list }}" src="
+                                {% static 'images'%}/{{row|multiply:numcols|add:col|getval:stat_list|lower}}.png" alt="Sexy">
+                                <p class="stat-value"> {{ row|multiply:numcols|add:col|getqueststat:quest }} </p>
+                            </div> 
+                            {% endfor %}
+                        </div>
+                        {% endfor %}
+                        </div>
+                    </td>
+                    <td>{{ quest.rating }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</body>
+

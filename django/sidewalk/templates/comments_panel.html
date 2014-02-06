@@ -1,0 +1,14 @@
+<div class="panel panel-default" id="comments-panel">
+    <div class="panel-heading"> 
+        Comments
+    </div>
+    <div class="panel-body" id="comments-panel-body">
+        <form method="POST" action="../profile/{{ user.username }}/" id="comments-form"> {% csrf_token %}
+        <input type="hidden" name="quest-id" id="quest-id" value="">
+        <input type="hidden" name="timeline" id="timeline" value="timeline">    
+        <table class="table table-hover" id="comments-table">
+        </table>
+        <div class="more"><a href='../profile/{{ user.username }}' id="all-comments">See Timeline</a></div>
+        </form>
+    </div>
+</div>

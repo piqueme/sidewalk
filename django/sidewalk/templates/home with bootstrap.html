@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+    
+    <title>Sidewalk</title>
+
+    <link href="../staticfiles/css/bootstrap.css" rel="stylesheet">
+    <link href="../staticfiles/css/home.css" rel="stylesheet">
+    <link href="../css/jquery-ui.custom.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic|Monda|Montserrat:400,700' rel='stylesheet' type='text/css'>
+
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">
+            <div class="logo"><span style="color: #a7a7a7">Side</span><span style="color: #eb2229">Walk</span></div></a>
+        </div>
+
+
+        <div class="navbar-collapse collapse">
+          <form class="navbar-form navbar-right" role="form">
+            <div class="form-group">
+              <input type="text" placeholder="Username" class="form-control">
+            </div>
+            <div class="form-group">
+              <input type="password" placeholder="Password" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-primary">Sign in</button>
+          </form>
+        </div><!--/.navbar-collapse -->
+      </div>
+    </div>
+
+<!-- _____________________________________________________________ -->
+
+
+    <section id="section0" data-speed="6" data-type="background">
+      <div class="container">
+      </div>
+    </section>
+
+    <section id="section1" data-speed = "12" data-type="background">
+      <div class="container">
+        <h1>Informational doodle</h1>
+        <p>stuff goes here describing sidewalk</p>
+
+        <p><a class="btn btn-primary btn-lg" role="button" href="#signup">Sign Up &raquo;</a></p>
+      </div>
+    </section>
+
+
+<!-- _____________________________________________________________ -->
+
+    <section id="section2" data-speed="6" data-type="background">
+        <div class="container">
+        </div>
+    </section>
+
+
+<!-- _____________________________________________________________ -->
+    <section id="section3" data-speed="4" data-type="background">
+    <div class="container">
+      <a name="signup"></a>
+      <div class="row">
+        <div class="col-md-4">
+
+          <div id="panel-signup">
+          <h2>Sign Up</h2><br>
+          <form role="form" class="form-inline">
+            <p><div class="form-group">
+              <label class="sr-only">Username</label>
+              <input type= "text" name= "username" placeholder="Username" class="form-control"></input>
+            </div></p>
+
+            <p><div class="form-group">
+              <label class="sr-only">Password</label>
+              <input type= "text" name= "password" placeholder="Password" class="form-control"></input>
+            </div></p>
+            <div class="form-group">
+              <label class="sr-only">Confirm Password</label>
+              <input type= "text" name= "confirm-password" placeholder="Confirm Password" class="form-control"></input></div>
+            
+            <p>
+            <div class="form-group"><input type= "text" name= "email" placeholder="Email Address" class="form-control"></input></div>
+            </p>
+            <p>
+            <div class="form-group"><input type= "text" name= "confirm-email" placeholder="Confirm Email" class="form-control"></input></div>
+            </p>
+            <div class="checkbox">
+              <input type= "checkbox" name= "agree"></input><label> I agree to the Terms and Conditions</label>
+            </div><br><br>
+            <p><button type="submit" class="btn btn-primary">Submit</button></p>
+
+          </form>
+        </div>
+        </div>
+
+
+        <div class="col-md-8">
+          <h2>Heading</h2>
+          <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+          <p></p>
+        </div>
+    </div>
+    </section>
+
+<!-- _____________________________________________________________ -->
+
+    <section id="section4" data-speed="6" data-type="background">
+      <div class="container">
+      </div>
+    </section>
+
+
+<!-- _____________________________________________________________ -->
+
+      <footer>
+        <p>&copy; !homies 2014</p>
+      </footer>
+    </div> <!-- /container -->
+
+
+    <script src="../../dist/js/bootstrap.min.js"></script>
+    <script src="../staticfiles/js/jquery-1.9.1.js"></script>
+    <script src="../staticfiles/js/jquery-ui-1.10.3.custom.js"></script>
+
+    <script>
+    $(document).ready(function(){
+      $window = $(window);
+ 
+      $('section[data-type="background"]').each(function(){
+        var $scroll = $(this);
+                     
+        $(window).scroll(function() {                 
+          var yPos = -($window.scrollTop() / $scroll.data('speed')); 
+          var coords = '50% '+ yPos + 'px';
+ 
+          $scroll.css({ backgroundPosition: coords });    
+        }); 
+      }); 
+    }); 
+
+    $(function() {
+      $('a[href*=#]:not([href=#])').click(function() {
+        if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+          var target = $(this.hash);
+          target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+          if (target.length) {
+            $('html,body').animate({
+              scrollTop: target.offset().top
+            }, 1000);
+            return false;
+          }
+        }
+      });
+    });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,27 @@
+{% load postingstuff %}
+{% load static %}
+
+
+<div id="photo-panel">
+<div class="panel panel-default">
+		<div class="panel-body" id= "photo-panel-body">
+				<div id="photo-filler">Select a quest on the timeline to view photos and comments! Drag the timeline to scroll.</div>
+		</div>
+	</div>
+</div> <!-- photo panel -->
+
+	<div id="another-wrapper">
+		<div id="timeline-wrapper">
+
+			<div id="timeline-panel">
+
+				{% for relation in completed_relations_sorted %}
+				<div class="quest-node" data-questname="{{ relation.completed_quest.name }}" data-date="{{ relation.date_completed }}" data-username="{{ relation.completed_user }}" data-timediff="100" data-questid="{{ relation.completed_quest.id }}" data-questpostername="{{ relation.completed_quest|getpostername }}">
+
+				</div>
+				
+				{% endfor %} 
+
+			</div>
+		</div>
+	</div>

@@ -1,0 +1,24 @@
+{% if ally_quests %}
+<!DOCTYPE html>
+{% load postingstuff %}
+{% load thumbnail %}
+<div id="removable" style="display:none;">
+<table class="table table-hover">
+{% for quest in ally_quests %}
+<tr>
+    <td><div class="quest-icon-wrapper">
+        {% thumbnail quest.current_quest.icon "200x200" padding=True as im %}
+            <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}" class="quest-icon img-thumbnail"> 
+        {% endthumbnail %} 
+    </div></td>
+    <td><h4 class="quest-title ellipsis"><a href="../quest/{{ quest.current_quest.id }}-{{ quest.current_quest.user_posted_name }}">{{ quest.current_quest.name }}</a></h4>
+        <p>{{ quest.current_quest.description }}</p></td>
+    <td>
+        <div class="star" data-score="{{ quest.current_quest.rating }}"></div>
+        <div class="ally-name">(ally: <a href="../profile/{{ quest.current_user.user.username }}"><b> {{ quest.current_user.user.username }} </b></a>)</div>
+    </td>
+</tr>
+{% endfor %}
+</table>
+</div>
+{% endif %}

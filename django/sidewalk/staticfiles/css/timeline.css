@@ -1,0 +1,225 @@
+#empty-timeline-error {
+	text-align: center;
+	width: 100%;
+	padding: 50px;
+}
+
+
+#profile-divider {
+
+}
+
+#timeline-divider {
+}
+
+.divider {
+	text-align: center;
+	width: 100%;
+	height: 20px;
+	margin-bottom: 20px;
+	text-align: center;
+  	float: right;
+  	display: block;
+}
+
+#timeline-tab {
+	height: 700px;
+	display: none;
+}
+
+#profile-tab {
+	
+}
+
+#timeline-title {
+	text-align: center;
+	width: 100%;
+	margin-bottom: 20px;
+}
+
+#photo-panel {
+	float: left;
+}
+
+#photo-panel-body {
+	height: 700px;
+	width: 800px;
+	padding: 10px;
+	overflow: auto;
+}
+
+#photo-panel-title {
+	text-align: center;
+	width: 700px;
+	max-height: 130px;
+	overflow: hidden;
+	font-size: 2em;
+	padding-bottom: 10px;
+}
+
+.challenge-photo {
+	-moz-box-shadow:    3px 3px 5px 3px #ccc;
+  	-webkit-box-shadow: 3px 3px 5px 3px #ccc;
+ 	box-shadow:         3px 3px 5px 3px #ccc;
+}
+
+.challenge-image {
+	width: 100%;
+	height: 100%;
+}
+
+#photo-filler {
+	color: #6f6f6f;
+	text-align: center;
+	width: 100%;
+	height: 100%;
+	padding-top: 100px;
+}
+
+#photo-row {
+	width: 100%;
+	min-height: 310px;
+	clear: both;
+	display: block;
+}
+
+#photo {
+	float: left;
+	margin-left: 10px;
+	margin-top: 10px;
+	margin-bottom: 20px;
+	width: 380px;
+	height: 300px;
+
+}
+
+#timeline-quest-info {
+	float: right;
+	width: 45%;
+	padding: 20px;
+	font-size: .9em !important;
+}
+
+.challenge-text {
+	cursor: pointer;
+}
+
+#comment-panel {
+	width: 700px;
+	padding: 30px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#comment-form {
+	display: block;
+	clear: both;
+	height: 130px;
+}
+
+#comment-textarea {
+	margin: 10px;
+}
+
+#comment-submit {
+	width: 100px;
+	float: right;
+}
+
+#comments-table {
+	width: 100%;
+	margin-top: 10px;
+}
+
+.comment-wrapper {
+	width: 100%;
+}
+
+.comment-icon-wrapper {
+	width: 50px;
+	height: 50px;
+	border-radius: 5px;
+	overflow: hidden;
+}
+.comment-icon {
+	width: 50px;
+	height: 50px;
+}
+
+.comment-poster-name {
+	margin-right: 20px;
+	font-weight: bold;
+}
+
+.comment-text {
+
+}
+
+
+
+/* ______________________TIMELINE_________________________ */
+
+#another-wrapper {
+	height: 700px;
+	width: 150px;
+	overflow-y: hidden;
+	overflow-x: visible;
+	float: right;
+}
+
+.popover {
+	font-size: .8em !important;
+}
+
+#timeline-wrapper {
+	padding-bottom: 100px;
+}
+
+#timeline-panel {
+	float: right;
+	height: 300px;
+	width: 150px;
+	position: relative;
+	padding-left: 10px;
+	padding-top: 20px;
+}
+
+.circle-node, .line, .line-top, .line-bottom {
+	display: block;
+	clear: both;
+	margin-top: 0;
+	margin-bottom: 0;
+	padding: 0;
+}
+
+.circle-node {
+	cursor: pointer;
+	position: absolute;
+	height: 30px;
+	width: 30px;
+	background: url(../images/node.png);
+	background-size: 30px auto;
+	z-index: 5;
+	-webkit-transition:.25s ease-in;
+    -moz-transition: .25s ease-in;
+    -o-transition: .25s ease-in;
+    transition: .25s ease-in;
+}
+
+.circle-node:hover {
+	-ms-transform:scale(1.5); /* IE 9 */
+    -moz-transform:scale(1.5); /* Firefox */
+    -webkit-transform:scale(1.5); /* Safari and Chrome */
+    -o-transform:scale(1.5); /* Opera */
+}
+
+.line {
+	margin-left: 10px;
+	position: absolute;
+	width: 8px;
+	background-color: #e0342a;
+	z-index: 0;
+	-moz-box-shadow:    3px 3px 5px 3px #ccc;
+  	-webkit-box-shadow: 3px 3px 5px 3px #ccc;
+ 	box-shadow:         3px 3px 5px 3px #ccc;
+}

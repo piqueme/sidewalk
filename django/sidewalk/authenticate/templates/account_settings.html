@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        {% load static %}
+        
+        {% include "imports.html" %}
+        <link href="{% static 'css/settings.css' %}" rel="stylesheet">
+        <script src="{% static 'js/settings.js' %}"></script>
+    </head>
+    <body>
+        {% include "navbar.html" %}
+
+        <div id="panel-header">
+            <div class="page-header">
+                <h3> Account Settings </h3>
+            </div> 
+        </div>
+        <div id="panel">
+            
+            <div id="content-panel">
+                <form action="submit/" enctype="multipart/form-data" method="POST" id="settings-form"> {% csrf_token %}
+                <div class="row">
+                    <div class="panel-group col-xs-9" id="accordion">
+                        <div id="name-settings-box">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <div class="row">
+                                        <div class="col-xs-8">
+                                            <h2><a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">&raquo; Name </a></h2>
+                                        </div>
+                                        <div class="col-xs-4">
+                                            <h4> Current: {{ user.first_name }} {{ user.last_name }}</h4>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="collapseOne" class="panel-collapse collapse in">
+                                    <div class="panel-body" id="name-panel">
+                                        <p> Users' names are displayed in various parts of our site in their full forms, particularly on profiles, so that you can easily find users you know outside of the site, and so that they similarly can find you. We at SideWalk strongly believe that party questing is vastly more enjoyable than lonely questing, and so encourage you to write your name so that it is identifiable by your homies. </p>
+                                        <div class="row" style="height:10px;">
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-2">
+                                                
+                                            </div>
+                                            <div class="col-xs-4">
+                                                <div class="field-label"> 
+                                                    First Name 
+                                                </div> 
+                                                <input class="form-control" placeholder="First Name" type="text" name="first-name" id="first-name">
+                                            </div>
+                                            <div class="col-xs-4">
+                                                <div class="field-label"> 
+                                                    Last Name 
+                                                </div> 
+                                                <input class="form-control" placeholder = "Last Name" type="text" name="last-name" id="last-name">
+                                            </div>
+                                            <div class="col-xs-2">
+                                                <button type="button" class="btn btn-primary change-button"> Submit </button> 
+                                            </div>
+                                        </div> 
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <div class="row">
+                                        <div class="col-xs-8">
+                                            <h2><a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">&raquo; User Icon </a></h2>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="collapseTwo" class="panel-collapse collapse in">
+                                    <div class="panel-body" id="icon-panel">
+                                        <p> Icons. Icons, icons, icons. Boy are these thingamajiggers important in our photo-happy society! Your user icon is displayed throughout our site as
+                                        a representation of you, so it plays a significant role in defining who you are on SideWalk. Choose it wisely! </p> 
+                                        <div class="row" style="height:10px;">
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-2">
+                                                
+                                            </div>
+                                            <div class="col-xs-8">
+                                                <div class="field-label"> 
+                                                    User Icon 
+                                                </div> 
+                                                <input class="form-control" placeholder="First Name" type="file" name="user-icon" id="user-icon">
+                                            </div>
+                                            <div class="col-xs-2">
+                                                <button type="button" class="btn btn-primary change-button"> Submit </button>
+                                            </div> 
+                                        </div> 
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <div class="row">
+                                        <div class="col-xs-8">
+                                            <h2><a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">&raquo; Description</a></h2>
+                                        </div>
+                                        <div class="col-xs-4">
+                                        </div>
+                                    </div>        
+                                </div>
+                                <div id="collapseThree" class="panel-collapse collapse in">
+                                    <div class="panel-body" id="description-panel">
+                                        <p> Your description is an identifier used by the site. The mysterious inner workings of this website use it to verify your identity and provide you with a spectacular user experience, as well as display your flavorfulness to others in the context of SideWalk. It's highly recommended that you make your description incredibly swanky so that you display an aura of coolio to the community. </p>
+                                        <div class="row" style="height:10px;">
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-1">
+                                            </div>
+                                            <div class="col-xs-9">
+                                                <div class="field-label">
+                                                    Description 
+                                                </div>
+                                                <textarea maxlength="200" class="form-control" cols="20" placeholder="Description" name="description" id="description" rows="6"></textarea>
+                                            </div>
+                                            <div class="col-xs-2">
+                                                <button type="button" class="btn btn-primary change-button"> Submit </button>
+                                            </div> 
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h2><a data-toggle="collapse" data-parent="#accordion" href="#collapseFour">&raquo; Password</a></h2>
+                                </div>
+                                <div id="collapseFour" class="panel-collapse collapse in">
+                                    <div class="panel-body" id="password-panel">
+                                        <p> Your password is an ultra-secret globotastically important piece of information that enables us to verify your identity when you use the site. It is tremendo-secure in our magical servers, which in turn are guarded by hundreds of very muscular people to provide you both cyber-protection, as well as physical protection. Please make sure you remember it, as well as keep it <b> safe </b> and <b> mysterious </b> so that other people cannot rob you of your questing experience! </p>
+                                        <div class="row" style="height:10px;">
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-3">
+                                            </div>
+                                            <div class="col-xs-6">
+                                                <div class="field-label">
+                                                    Password
+                                                </div>
+                                                <input class="form-control" placeholder="Password" type="password" name="password" id="password" maxlength="60">
+                                            </div>
+                                            <div class="col-xs-1">
+                                            </div>
+                                            <div class="col-xs-2">
+                                                <button type="button" class="btn btn-primary change-button"> Submit </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <div class="row">
+                                        <div class="col-xs-7">
+                                            <h2><a data-toggle="collapse" data-parent="#accordion" href="#collapseFive">&raquo; Email </a></h2>
+                                        </div>
+                                        <div class="col-xs-5">
+                                            <h4> Current: {{ user.email }} </h4>
+                                        </div>      
+                                    </div> 
+                                </div>
+                                <div id="collapseFive" class="panel-collapse collapse in">
+                                    <div class="panel-body" id="email-panel">
+                                        <p> This is your email as we know it. It is not displayed anywhere except in our databases, and is currently used only to verify your information. In the future, it is quite possible that we will enable an email notification service that will let you know about certain events on the site. </p>
+                                        <div class="row" style="height:10px;">
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-3">
+                                            </div>
+                                            <div class="col-xs-6">
+                                                <div class="field-label">
+                                                    Email
+                                                </div>
+                                                <input class="form-control" placeholder="someone@domain.com" type="text" name="email" id="email" maxlength="100">
+                                            </div>
+                                            <div class="col-xs-1">
+                                            </div>
+                                            <div class="col-xs-2">
+                                                <button type="button" class="btn btn-primary change-button"> Submit </button>
+                                            </div> 
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <div class="row">
+                                        <div class="col-xs-8">
+                                            <h2><a data-toggle="collapse" data-parent="#accordion" href="#collapseSix">&raquo; Location</a></h2>
+                                        </div>
+                                        <div class="col-xs-4">
+                                            <h4> Current: {{ user.quser.location }} </h4>
+                                        </div>
+                                    </div>        
+                                </div>
+                                <div id="collapseSix" class="panel-collapse collapse in">
+                                    <div class="panel-body" id="location-panel">
+                                        <p> This is your city of residence; your choices for this are limited only to the cities that SideWalk currently can support. We use this information to filter your search queries and give you information which is useful for exploring <b> your </b> city. Since SideWalk is meant to provide you with the tools for exploring your city of residence, it's really important that you fill this out accurately!</p> 
+                                        <div class="row" style="height:10px;">
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-xs-3">
+                                            </div>
+                                            <div class="col-xs-6">
+                                                <div class="field-label">
+                                                    Location
+                                                </div>
+                                                <select class="form-control" id="location" name="location">
+                                                    <option value=""></option>
+                                                    <option value="Boston, MA"> Boston, MA </option>
+                                                    <option value="Houston, TX"> Houston, TX </option>
+                                                    <option value="San Fransisco, CA"> San Fransisco, CA </option>
+                                                    <option value="New York, NY"> New York, NY </option>
+                                                    <option value="Seattle, WA"> Seattle, WA </option>
+                                                    <option value="Atlanta, GA"> Atlanta, GA </option>
+                                                    <option value="Orlando, FL"> Orlando, FL </option>`
+                                                </select>
+                                            </div>
+                                            <div class="col-xs-1">
+                                            </div>
+                                            <div class="col-xs-2">
+                                                <button type="submit" class="btn btn-primary change-button"> Submit </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal fade" id="settings-verify-dialog" tabindex="-1" rol="dialog" aria-labelledby="settings-verify" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                        <h4 class="modal-title" id="settings-verify-title"> Verify Changes </h4>
+                                    </div>
+                                        <div class="modal-body" id="complete-body">
+                                            <p> Are you absolutely certain that you'd like to make these changes? </p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal"> No </button>
+                                            <input type="hidden" id="id" name="id" value=""/>
+                                            <button type="submit" name="submit" class="btn btn-primary" id="verify-submit-button"> Yes! </button>
+                                        </div>
+                                </div> <!-- /.modal-content -->
+                            </div> <!-- /.modal-dialog -->
+                        </div> <!-- /.modal -->
+                        </form> 
+                    </div>
+            </div>
+
+        {% include 'comments_panel.html' %}
+    </body>
+</html>

@@ -1,0 +1,188 @@
+body {
+    overflow-x: hidden;
+	background-image:none; 
+}
+
+footer {
+	padding-left: 100px;
+	padding-top: 30px;
+	padding-bottom: 60px;
+	background-color: #fbf6f5;
+	-moz-box-shadow: 0 0 15px #aaa8b3;
+    -webkit-box-shadow: 0 0 15px #aaa8b3;
+    box-shadow: 0 0 15px #aaa8b3;
+}
+
+.jumbotron {
+	/*background: url(../images/arcadia.png) no-repeat fixed;*/
+	height: 500px;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;  
+	box-sizing: border-box;  
+}
+
+#section0 {
+	background: url(../images/arcadia.png) 50% 0 fixed; 
+    height: 100px !important;  
+    margin: 0 auto; 
+    width: 100%; 
+    position: relative; 
+    padding: 50px 0;
+}
+
+#section1 { 
+    height: auto;  
+    margin: 0 auto; 
+    width: 100%; 
+    position: relative; 
+    -moz-box-shadow: 0 0 15px #aaa8b3;
+    -webkit-box-shadow: 0 0 15px #aaa8b3;
+    box-shadow: 0 0 15px #aaa8b3;
+    padding: 50px 0;
+}
+#section2 { 
+    background: url(../images/arcadia.png) 50% 0 fixed; 
+    z-index: -10;
+    height: auto;  
+    margin: 0 auto; 
+    width: 100%; 
+    position: relative; 
+    padding: 200px 0;
+}
+#section3 { 
+    height: auto;
+    margin: 0 auto; 
+    width: 100%; 
+    position: relative; 
+    -moz-box-shadow: 0 0 15px #aaa8b3;
+    -webkit-box-shadow: 0 0 15px #aaa8b3;
+    box-shadow: 0 0 15px #aaa8b3;
+    padding: 100px 0;
+    color: #fff;
+}
+
+#section4 {
+	background: url(../images/arcadia.png) 50% 0 fixed no-repeat; 
+	z-index: -10;
+    height: auto;
+    margin: 0 auto; 
+    width: 100%; 
+    position: relative; 
+    padding: 100px 0;
+    color: #fff;
+}
+
+#login-form {
+    margin-top: 0px;
+}
+
+#info-doodle, #panel-signup, #signup-info {
+    overflow-x: auto;
+}
+
+
+#info-doodle {
+    text-align: center;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 2em;
+}
+
+.doodle-image {
+    width: 70%;
+    height: auto;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.doodle-container {
+    width: 100%;
+}
+
+
+#screenshot-search {
+
+}
+
+#signup-row {
+    width: 100%;
+}
+
+#signup-container {
+    width: 90%;
+
+}
+
+#signup-info {
+    border-width: 0px;
+    border-style: solid;
+    border-color: #dddddd;
+    border-left-width: 1px;
+}
+
+#signup-info img {
+    height: 130px;
+    margin-left: 20px;
+    margin-right: 20px;
+    width: auto;
+    border-style: solid;
+    border-color: #dddddd;
+    border-width: 1px;
+}
+
+.media {
+    margin: 20px;
+
+}
+
+.form-control {
+    
+    display: inline-block;
+}
+
+.form-group {
+    margin: 8px;
+}
+
+#first-name {
+    width: 160px;
+}
+
+#last-name {
+    width: 140px;
+    clear: right;
+}
+
+#username {
+    width: 320px;
+    clear: right;
+}
+
+#password {
+    width: 160px;
+
+}
+
+#verify-password {
+    width: 140px;
+    clear: right;
+}
+
+#email {
+    width: 320px;
+
+}
+
+#verify-email {
+    width: 320px;
+
+}
+
+#location {
+    width: 320px;
+}
+
+#agree {
+    width: 320px;
+}
